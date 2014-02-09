@@ -11,3 +11,11 @@ zstyle :compinstall filename '/home/soma/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+# prompts
+LPROMPT () {
+	PS1="┌─[%{%}%m%{%} %~ %{%}%(0?..%?)%{%}]
+└───╼ "
+}
+
+LPROMPT
