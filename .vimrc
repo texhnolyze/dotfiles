@@ -1,48 +1,45 @@
-set nocompatible
-
-" Always show current position
-set ruler
-
-" set line numbers
-set number
-
-" enable syntax highlighting
 syntax on
+filetype plugin on
+filetype indent on
 
-" set preferred color scheme
 colorscheme desert
 
-" better command-line completion
-set wildmenu
+set ttyfast							" don't lag...
+set cursorline						" track position
+set nocompatible					" leave the old ways behind
+set nobackup						" disable backup files (filename~)
+set nowrap							" don't wrap lines
+set splitbelow						" place new files below the current 
+set showmatch						" matching brackets & the like
+set clipboard+=unnamed				" yank and copy to X clipboard	
+set number							" show line numbers
+set whichwrap=b,s,h,l,<,>,[,]		" whichwrap -- left/right keys can travere up/down
+set linebreak						" attempt to wrap lines cleanly
+set wildmenu						" enchanced tab-completion shows all matching cmds in popup menu
+set wildmode=list:longest,full		" full completion options
+set autoread						" automatically read changes to file from outside
 
-" show partial commands in the last line of the screen
-set showcmd
+" tabs and indenting
+set tabstop=4						" tabs appear as n number of columns
+set shiftwidth=4					" n columns for auto-indenting
+set noexpandtab						" insert spaces instead of tabs
+set autoindent 						" auto indents next new line
+set smartindent 					" smart indent
 
-" Set to auto read when a file is changed from the outside
-set autoread
+" searching
+set hlsearch						" hightlight search results
+set incsearch 						" increment search
+set ignorecase						" ignore case when searching
+set smartcase						" uppercase causes case-sensitive search
 
-" Ignore case when searching
-set ignorecase
-
-" When searching try to bea smart about cases
-set smartcase
-
-" Hightlight search results
-set hlsearch
-
-" Height of the command bar
-set cmdheight=2
-
-" Show matching brackets when text indicator is over them
-set showmatch
-
-" Be smart when using tabs
-set smarttab 
+" status bar
+set statusline=\ \%f%m%r%h%w\ ::\ %y\ [%{&ff}]\%=\ [%p%%:\ %l/%L]\ 
+set laststatus=2
+set cmdheight=1
 
 
-set autoindent "Auto ident
-set smartindent "Smart indent
-set wrap "Wrap lines
+
+
 
 
 
