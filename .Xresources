@@ -17,7 +17,7 @@ URxvt.borderLess: false
 ! teh transparency stuff
 URxvt.inheritPixmap: true
 URxvt.tintColor: #6E6E6E
-URxvt.shading: 90
+!URxvt.shading: 40
 
 ! Font settings
 Xft.autohint: 0
