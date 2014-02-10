@@ -11,7 +11,10 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-#loading and merging ~/.Xresources
+# virtualbox-guest-utils setup
+#VBoxClient-all
+
+# loading and merging ~/.Xresources
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 # start terminal emulation daemon
@@ -20,10 +23,15 @@ fi
 # set up wallpaper
 sh ~/.fehbg &
 
-# exec gnome-session
-# exec startkde
-# exec startxfce4
-# ...or the Window Manager of your choice
+# set up virtual window manager for VirtualMachines
+#wmname LG3D
 
-#execute dwm startup script
-sh ~/bin/startdwm
+# run dwm window manager
+#exec dwm
+
+# run bspwm and it's keybinding manager
+#sxhkd &
+#exec bspwm
+
+# execute dwm startup script
+#sh ~/bin/startdwm
