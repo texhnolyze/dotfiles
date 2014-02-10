@@ -1,12 +1,10 @@
 syntax on
-filetype plugin on
-filetype indent on
 
 colorscheme desert
 
 set ttyfast							" don't lag...
 set cursorline						" track position
-set nocompatible					" leave the old ways behind
+"set nocompatible					" leave the old ways behind
 set nobackup						" disable backup files (filename~)
 set nowrap							" don't wrap lines
 set splitbelow						" place new files below the current 
@@ -37,10 +35,27 @@ set statusline=\ \%f%m%r%h%w\ ::\ %y\ [%{&ff}]\%=\ [%p%%:\ %l/%L]\
 set laststatus=2
 set cmdheight=1
 
+" vundle settings
+set nocompatible					" leave the old ways behind
+filetype off
 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
+" let vundle manage itself (required)
+Bundle 'gmarik/vundle'
 
+" myPlugins
+Bundle 'kien/ctrlp.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'tomasr/molokai'
+Bundle 'tpope/vim-fugitive'
+Bundle 'rking/ag.vim'
 
+" required
+filetype plugin indent on
 
-
-
+" color settings
+" set background=dark
+" colorscheme solarized
+" colorscheme molokai
