@@ -3,7 +3,7 @@ URxvt.buffered: true
 URxvt.cursorColor: #5E468C
 URxvt.cursorBlink: true
 URxvt.geometry: 80x22
-URxvt.transparent: 1
+URxvt.transparent: 0
 URxvt.urgentOnBell: true
 URxvt.letterSpace: +1
 URxvt.lineSpace: 1
@@ -15,9 +15,9 @@ URxvt.scrollBar: false
 URxvt.borderLess: false
 
 ! teh transparency stuff
-URxvt.inheritPixmap: true
-URxvt.tintColor: #6E6E6E
-!URxvt.shading: 40
+! URxvt.inheritPixmap: true
+! URxvt.tintColor: #6E6E6E
+! URxvt.shading: 90
 
 ! Font settings
 Xft.autohint: 0
@@ -29,52 +29,31 @@ Xft.dpi: 96
 Xft.rgba: rgb
 
 ! -- Fonts -- !
-!URxvt.font:xft:droid sans mono slashed:size=10.5
-!URxvt.boldFont:xft:droid sans mono slashed:size=10.5
-!URxvt.font:xft:dejavu sans mono:size=10.5
-!URxvt.boldFont:xft:dejavu sans mono:size=10.5
+!URxvt.font:xft:droid sans mono slashed:size=8
+!URxvt.boldFont:xft:droid sans mono slashed:size=8
+!URxvt.font:xft:dejavu sans mono:size=8
+!URxvt.boldFont:xft:dejavu sans mono:size=8
 !URxvt.font:xft:luxi mono:regular:size=10
 !URxvt.boldFont:xft:luxi mono:regular:size=10
-!URxvt.font:xft:envy code r:medium:size=11
-!URxvt.boldFont:xft:envy code r:medium:size=11
-!URxvt.font:xft:inconsolata:medium:size=13
-!URxvt.boldFont:xft:inconsolata:medium:size=13
+!URxvt.font:xft:envy code r:medium:size=8
+!URxvt.boldFont:xft:envy code r:medium:size=8
+!URxvt.font:xft:inconsolata:medium:size=9
+!URxvt.boldFont:xft:inconsolata:medium:size=9
 
-! Colours
-!! jwr dark
-URxvt.background: #080808
-URxvt.foreground: #999999
-
-!black
-*color0:#333333
-!*color0:#242424
-*color8:#474747
-!red
-*color1:#8A2F58
-*color9:#CF4F88
-!green
-*color2:#287373
-*color10:#53A6A6
-!yellow
-*color3:#914E89
-*color11:#BF85CC
-!blue
-*color4:#395573
-*color12:#4779B3
-!magenta
-*color5:#5E468C
-*color13:#7F62B3
-!cyan
-*color6:#2B7694
-*color14:#47959E
-!white
-*color7:#899CA1
-*color15:#C0C0C0
-
-! urxvt pearl extensions settings
+!! urxvt pearl extensions settings
 URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
 URxvt.url-select.launcher: luakit
 URxvt.url-select.underline: true
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
+
+!! Colours
+!#include "/home/soma/.colours/lich"
+!#include "/home/soma/.colours/zenburn"
+!#include "/home/soma/.colours/washed"
+!#include "/home/soma/.colours/dark"
+!#include "/home/soma/.colours/jwrdark"
+#include "/home/soma/.colours/tomorrow"
+!#include "/home/soma/.colours/new"
+
