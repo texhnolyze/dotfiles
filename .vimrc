@@ -1,7 +1,5 @@
 syntax on
 
-colorscheme desert
-
 set ttyfast							" don't lag...
 set cursorline						" track position
 "set nocompatible					" leave the old ways behind
@@ -45,17 +43,32 @@ call vundle#rc()
 " let vundle manage itself (required)
 Bundle 'gmarik/vundle'
 
-" myPlugins
+" my base Plugins
 Bundle 'kien/ctrlp.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tomasr/molokai'
 Bundle 'tpope/vim-fugitive'
 Bundle 'rking/ag.vim'
+Bundle 'ervandew/supertab'
+Bundle 'scrooloose/nerdtree'
+
+" Colour Plugins
+"Bundle 'altercation/vim-colors-solarized'
+"Bundle 'tomasr/molokai'
+Bundle 'flazz/vim-colorschemes'
+
+" php ide Plugins
+Bundle 'joonty/vim-phpqa'
+Bundle 'joonty/vim-phpunitqf'
+Bundle 'joonty/vdebug'
+
+" other languages
+Bundle 'scrooloose/syntastic'
+"Bundle 'joonty/vdebug'
 
 " required
 filetype plugin indent on
 
 " color settings
 " set background=dark
+" set background=light
 " colorscheme solarized
 " colorscheme molokai
