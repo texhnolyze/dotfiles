@@ -37,11 +37,11 @@ set cmdheight=1
 set nocompatible					" leave the old ways behind
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
 " let vundle manage itself (required)
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 " my base Plugins
 Bundle 'kien/ctrlp.vim'
@@ -64,11 +64,12 @@ Bundle 'joonty/vdebug'
 Bundle 'scrooloose/syntastic'
 "Bundle 'joonty/vdebug'
 
-" required
-filetype plugin indent on
-
 " color settings
 " set background=dark
 " set background=light
 " colorscheme solarized
 " colorscheme molokai
+
+" Vundle settings end 
+call vundle#end()
+filetype plugin indent on
