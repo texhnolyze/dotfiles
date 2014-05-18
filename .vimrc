@@ -1,4 +1,6 @@
 syntax on
+scriptencoding utf-8
+set encoding=utf-8
 
 set ttyfast							" don't lag...
 set cursorline						" track position
@@ -29,7 +31,7 @@ set ignorecase						" ignore case when searching
 set smartcase						" uppercase causes case-sensitive search
 
 " status bar
-set statusline=\ \%f%m%r%h%w\ ::\ %y\ [%{&ff}]\%=\ [%p%%:\ %l/%L]\ 
+"set statusline=\ \%f%m%r%h%w\ ::\ %y\ [%{&ff}]\%=\ [%p%%:\ %l/%L]\ 
 set laststatus=2
 set cmdheight=1
 
@@ -49,16 +51,18 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'rking/ag.vim'
 Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdtree'
-
-" Colour Plugins
+ 
+" Colour and Design Plugins
 "Bundle 'altercation/vim-colors-solarized'
 "Bundle 'tomasr/molokai'
 Bundle 'flazz/vim-colorschemes'
+Bundle 'itchyny/lightline.vim'
 
 " php ide Plugins
-Bundle 'joonty/vim-phpqa'
 Bundle 'joonty/vim-phpunitqf'
-Bundle 'joonty/vdebug'
+" php ide Plugins which require vim python2 support
+"Bundle 'joonty/vim-phpqa'
+"Bundle 'joonty/vdebug'
 
 " other languages
 Bundle 'scrooloose/syntastic'
@@ -73,3 +77,25 @@ Bundle 'scrooloose/syntastic'
 " Vundle settings end 
 call vundle#end()
 filetype plugin indent on
+
+
+" Plugin settings
+"
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'default',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))'
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
