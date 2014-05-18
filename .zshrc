@@ -12,13 +12,24 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+autoload -U colors && colors
+
 # prompts
 LPROMPT () {
-	PS1="┌─[%{%}%m%{%} %~ %{%}%(0?..%?)%{%}]
+	PS1="┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}%(0?..%?)%{$reset_color%}]
 └───╼ "
 }
 
 LPROMPT
+
+# colour utils
+export GREP_COLOR="1;31"
+alias grep="grep --color=auto"
+alias "ls=ls --color=auto"
+# colors for ls
+if [[ -f ~/.dir_colors ]]; then
+    eval $(dircolors -b ~/.dir_colors)
+fi
 
 # Aliases
 alias pong='ping -c3 www.google.com'
