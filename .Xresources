@@ -52,11 +52,17 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 
 !! Colours
-!#include "/home/soma/.colours/lich"
-!#include "/home/soma/.colours/zenburn"
-!#include "/home/soma/.colours/washed"
-!#include "/home/soma/.colours/dark"
-!#include "/home/soma/.colours/jwrdark"
-#include "/home/soma/.colours/tomorrow"
-!#include "/home/soma/.colours/new"
+!#include ".colours/lich"
+!#include ".colours/zenburn"
+!#include ".colours/washed"
+!#include ".colours/dark"
+!#include ".colours/jwrdark"
+!#include ".colours/tomorrow"
+!#include ".colours/new"
+!#include ".colours/ancient"
+#include ".colours/nebula"
+!#include ".colours/sinatra"
+!#include ".colours/blackgum"
+!#include ".colours/cryptred"
+!#include ".colours/blackburn"
 
