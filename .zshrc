@@ -14,8 +14,7 @@ compinit
 
 autoload -U colors && colors
 
-
-###---- Command prompt ----###
+# prompts
 LPROMPT () {
 	PS1="┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}%(0?..%?)%{$reset_color%}]
 └───╼ "
@@ -23,40 +22,22 @@ LPROMPT () {
 
 LPROMPT
 
-
-###---- Colour utils ----###
+# colour utils
 export GREP_COLOR="1;31"
 alias grep="grep --color=auto"
 alias "ls=ls --color=auto"
-
 # colors for ls
 if [[ -f ~/.dir_colors ]]; then
     eval $(dircolors -b ~/.dir_colors)
 fi
 
-
-###---- Aliases ---###
-# generel aliases
+# Aliases
 alias pong='ping -c3 www.google.com'
 
 # git aliases
 alias gps='git push'
-alias gpl='git pull --ff-only'
-alias gst='git status'
-alias gft='git fetch'
-alias gcm='git commit'
-alias gaa='git add -A'
-alias gad='git add'
-alias gco='git checkout'
-alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar) %C(white)%s%C(red)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
+alias gpl='git pull'
+alias gstat='git status'
+alias gfetch='git fetch'
 
-# coding aliases
-alias rspec='rspec --color --format documentation'
-alias phpunit='phpunit --colors --verbose'
-
-# pacman aliases
-alias pacupd='sudo pacman -Sy'
-alias pacupg='sudo pacman -Syu'
-alias pacins='sudo pacman -S'
-alias pacquery='sudo pacman -Q'
-alias pacsearch='sudo pacman -Ss'
+glg() {git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar) %C(white)%s%C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' $1}

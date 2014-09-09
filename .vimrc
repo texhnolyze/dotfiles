@@ -1,10 +1,10 @@
-"###---- base settings ----###"
 syntax on
 scriptencoding utf-8
 set encoding=utf-8
 
 set ttyfast							" don't lag...
 set cursorline						" track position
+"set nocompatible					" leave the old ways behind
 set nobackup						" disable backup files (filename~)
 set nowrap							" don't wrap lines
 set splitbelow						" place new files below the current 
@@ -30,30 +30,11 @@ set incsearch 						" increment search
 set ignorecase						" ignore case when searching
 set smartcase						" uppercase causes case-sensitive search
 
-" code completion 
-set tags=~/.vim/srg.tags
-
-" status bar 
-" replaced by lightline 
+" status bar
 "set statusline=\ \%f%m%r%h%w\ ::\ %y\ [%{&ff}]\%=\ [%p%%:\ %l/%L]\ 
 set laststatus=2
 set cmdheight=1
 
-" color settings
-"set background=dark
-"set background=light
-"colorscheme solarized
-"colorscheme molokai
-
-
-"###---- aliases and keymaps ---###"
-map <C-h> <C-w>h<C-w><Esc>
-map <C-k> <C-w>k<C-w><Esc>
-map <C-j> <C-w>j<C-w><Esc>
-map <C-l> <C-w>l<C-w><Esc>
-
-
-"###---- plugins ----###"
 " vundle settings
 set nocompatible					" leave the old ways behind
 filetype off
@@ -64,43 +45,42 @@ call vundle#begin()
 " let vundle manage itself (required)
 Bundle 'gmarik/Vundle.vim'
 
-" base plugins
+" my base Plugins
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'rking/ag.vim'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdtree'
  
-" color and design plugins
+" Colour and Design Plugins
 "Bundle 'altercation/vim-colors-solarized'
 "Bundle 'tomasr/molokai'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'itchyny/lightline.vim'
 
-" php plugins
+" php ide Plugins
 Bundle 'joonty/vim-phpunitqf'
-Bundle 'joonty/vim-phpqa'
-Bundle 'joonty/vdebug'
-
-" python plugins
+" php ide Plugins which require vim python2 support
+"Bundle 'joonty/vim-phpqa'
 "Bundle 'joonty/vdebug'
 
-" ruby plugins
-"Bundle 'joonty/vdebug'
-
-" generel coding plugins
+" other languages
 Bundle 'scrooloose/syntastic'
+"Bundle 'joonty/vdebug'
 
+" color settings
+" set background=dark
+" set background=light
+" colorscheme solarized
+" colorscheme molokai
 
-" vundle settings end 
+" Vundle settings end 
 call vundle#end()
 filetype plugin indent on
 
 
-"###---- plugin settings ----###"
-" YouCompleteMe
-let g:ycm_collect_identifiers_from_tags_files = 1
-
+" Plugin settings
+"
 " lightline
 let g:lightline = {
       \ 'colorscheme': 'default',
