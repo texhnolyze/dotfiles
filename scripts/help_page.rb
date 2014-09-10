@@ -60,7 +60,15 @@ end
 
 
 def write_tranlation_file(file, bu_key, row)
-	File.open(file, 'a+') {|f| f.write(%{#{row["Key Web"].to_s} = "#{row[bu_key].to_s}" \n}) }
+	File.open(file, 'a+') do |f| 
+		key = row["Key Web"].to_s
+		translation = escape_quotes(row[bu_key].to_s)
+		f.write(%{#{key} = "#{translation}" \n}) 
+	end
+end
+
+def escape_quotes(string)
+	string.gsub('"', '\"').gsub(/\n/, '')
 end
 
 create_files
