@@ -20,7 +20,7 @@ set autoread						" automatically read changes to file from outside
 " tabs and indenting
 set tabstop=4						" tabs appear as n number of columns
 set shiftwidth=4					" n columns for auto-indenting
-set noexpandtab						" insert spaces instead of tabs
+set expandtab						" insert spaces instead of tabs
 set autoindent 						" auto indents next new line
 set smartindent 					" smart indent
 
