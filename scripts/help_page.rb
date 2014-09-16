@@ -7,11 +7,11 @@ $url = 'https://docs.google.com/spreadsheets/d/1ZaT_hW_yDMdzrRDaOoGDomF4FgJpwuVi
 $destination_folder = ARGV.first
 
 def create_files(folder = './')
-	file = File.new("#{folder}lang.de", 'w+')
-	file = File.new("#{folder}lang.fr", 'w+')
-	file = File.new("#{folder}lang.it", 'w+')
-	file = File.new("#{folder}lang.gsw", 'w+')
-	file = File.new("#{folder}lang.en", 'w+')
+	file = File.new("#{folder}/lang.de", 'w+')
+	file = File.new("#{folder}/lang.fr", 'w+')
+	file = File.new("#{folder}/lang.it", 'w+')
+	file = File.new("#{folder}/lang.gsw", 'w+')
+	file = File.new("#{folder}/lang.en", 'w+')
 end
 
 def get_csv_from_url(url = $url)
@@ -59,7 +59,7 @@ def swi(row)
 end
 
 def write_tranlation_file(file, bu_key, row)
-	File.open("#{$destination_folder}" + file, 'a+') do |f| 
+	File.open(%(#{$destination_folder}/#{file}), 'a+') do |f| 
 		key = row["Key Web"].to_s
 		translation = strip_newlines(row[bu_key].to_s)
 		f.write(%{#{key} = "#{translation}" \n}) 
