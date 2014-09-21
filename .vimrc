@@ -91,6 +91,11 @@ Bundle 'joonty/vdebug'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 
+" js plugins
+Bundle 'moll/vim-node'
+Bundle 'myhere/vim-nodejs-complete'
+Bundle 'marijnh/tern_for_vim'
+
 " general coding plugins
 Bundle 'scrooloose/syntastic'
 
