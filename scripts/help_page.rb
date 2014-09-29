@@ -6,7 +6,7 @@ require 'csv'
 $url = 'https://docs.google.com/spreadsheets/d/1ZaT_hW_yDMdzrRDaOoGDomF4FgJpwuViC4rUERg2Qno/export?format=csv&id=1ZaT_hW_yDMdzrRDaOoGDomF4FgJpwuViC4rUERg2Qno&gid=0'
 $destination_folder = ARGV.first
 
-def create_files(folder = './')
+def create_lang_files(folder = './')
 	file = File.new("#{folder}/lang.de", 'w+')
 	file = File.new("#{folder}/lang.fr", 'w+')
 	file = File.new("#{folder}/lang.it", 'w+')
@@ -71,7 +71,7 @@ def strip_newlines(string)
 end
 
 def run
-	create_files($destination_folder)
+	create_lang_files($destination_folder)
 	split_csv_into_files(get_csv_from_url)
 end
 
