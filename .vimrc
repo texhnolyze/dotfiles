@@ -30,6 +30,9 @@ set incsearch 						" increment search
 set ignorecase						" ignore case when searching
 set smartcase						" uppercase causes case-sensitive search
 
+" change settings based on filetype
+autocmd Filetype ruby setlocal shiftwidth=2 tabstop=2
+
 " code completion 
 set tags=~/.vim/tags/*
 
