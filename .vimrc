@@ -32,6 +32,7 @@ set smartcase						" uppercase causes case-sensitive search
 
 " change settings based on filetype
 autocmd Filetype ruby setlocal shiftwidth=2 tabstop=2
+autocmd Filetype sh setlocal shiftwidth=2 tabstop=2
 
 " code completion 
 set tags=~/.vim/tags/*
@@ -41,12 +42,6 @@ set tags=~/.vim/tags/*
 "set statusline=\ \%f%m%r%h%w\ ::\ %y\ [%{&ff}]\%=\ [%p%%:\ %l/%L]\ 
 set laststatus=2
 set cmdheight=1
-
-" color settings
-"set background=dark
-"set background=light
-"colorscheme solarized
-"colorscheme molokai
 
 
 "###---- aliases and keymaps ---###"
@@ -164,3 +159,11 @@ function! MyFilename()
        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
        \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
+
+" color settings
+"set background=dark
+"set background=light
+"colorscheme solarized
+"colorscheme molokai
+
+

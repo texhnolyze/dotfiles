@@ -1,8 +1,8 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt appendhistory autocd beep extendedglob nomatch notify
+HISTSIZE=5000
+SAVEHIST=5000
+setopt appendhistory autocd beep extendedglob nomatch notify completealiases HIST_IGNORE_DUPS
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -60,3 +60,4 @@ alias pacupg='sudo pacman -Syu'
 alias pacins='sudo pacman -S'
 alias pacquery='sudo pacman -Q'
 alias pacsearch='sudo pacman -Ss'
+alias orphans='sudo pacman -Rns $(pacman -Qtdq)'

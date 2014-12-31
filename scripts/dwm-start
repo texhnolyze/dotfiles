@@ -1,0 +1,11 @@
+#!/bin/sh
+# start dwm loop
+
+while true; do
+    $HOME/scripts/dwm-status
+    sleep 2
+done &
+
+while true; do
+    dwm > /dev/null
+done

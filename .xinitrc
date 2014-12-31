@@ -17,6 +17,11 @@ fi
 # loading and merging ~/.Xresources
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
+# load X modified keymap
+if [ -s ~/.Xmodmap ]; then
+    xmodmap ~/.Xmodmap
+fi
+
 # start terminal emulation daemon
 /usr/bin/urxvtd -q -o -f 
 

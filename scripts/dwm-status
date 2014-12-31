@@ -1,0 +1,77 @@
+#!/bin/bash
+# Status script for dwm
+
+bat(){
+  onl="$(</sys/class/power_supply/AC/online)"
+  charge="$(</sys/class/power_supply/BAT0/capacity)"
+  if [[ $onl -eq 0 && $charge -ge 15 ]]; then
+    echo -e "BAT \x04$charge%\x01"
+  elif [[ $onl -eq 0 && $charge -le 14 ]]; then
+    echo -e "BAT \x03$charge%\x01"
+  elif [[ -n $charge ]]; then
+    echo -e "AC \x04$charge%\x01"
+  else
+    echo -e "AC"
+  fi
+}
+
+mem(){
+  mem="$(awk '/^Mem/ {print $3}' <(free -m))"
+  echo -e "\x04$mem\x01"
+}
+
+# CPU line courtesy Procyon:
+# https://bbs.archlinux.org/viewtopic.php?pid=874333#p874333
+cpu(){
+  read cpu a b c previdle rest < /proc/stat
+  prevtotal=$((a+b+c+previdle))
+  sleep 0.5
+  read cpu a b c idle rest < /proc/stat
+  total=$((a+b+c+idle))
+  cpu="$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))"
+  echo -e "\x05$cpu%\x01"
+}
+
+temp(){
+  temp="$(sensors | awk '/^Physical/ {print substr($4, 2)}')"
+  echo -e "\x05$temp\x01"
+}
+
+hdd(){
+  hd=( $(awk '
+    {i=$5} /boot/ {a=i}; /root/ {b=i}; /home/ {c=i}; /media/ {d=i}
+    END {if (NR==11) print a,b,c,d; else print a,b,c}
+           ' <(df -P)) )
+  drives="${#hd[@]}"
+  if (( drives > 3 )); then
+    echo -e "\x08${hd[@]:0:3} \x06${hd[@]:3:1}\x01"
+  else
+    echo -e "\x05${hd[@]}\x01"
+  fi
+}
+
+net(){
+  quality="$(cat /proc/net/wireless | awk '/^wlp4s0/ {print substr($3, 1, 2)}')"
+  strength="$(cat /proc/net/wireless | awk '/^wlp4s0/ {print substr($4, 2, 2)}')"
+  ssid="$(ruby -e 'puts `iwconfig`.match(/ESSID.*/)[0].gsub(/ESSID:|\"| $/, "")')"
+  net="$(echo $(wget --spider www.google.com) "$?")"
+  eth="$(</sys/class/net/enp0s25/operstate)"
+
+  if [[ $net -eq 0 ]]; then
+    if [[ $eth = up ]]; then
+      echo -e "ETH \x04on \x01"
+    elif [[ -n $quality ]]; then
+      echo -e "WIFI \x04$ssid\x01QUA \x04$quality%\x01 STR \x04$strength%\x01"
+    fi
+  else
+    echo -e "NET \x03off \x01"
+  fi
+}
+
+dte(){
+  dte="$(date "+%I:%M")"
+  echo -e "\x02$dte\x01"
+}
+
+# Pipe to status bar
+xsetroot -name "$(bat) • CPU $(cpu) TEMP $(temp) • MEM $(mem) • HDD $(hdd) • $(net) • $(dte)"
