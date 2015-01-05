@@ -1,0 +1,19 @@
+#mute volume (Fn + <F1>)
+"amixer set Master toggle"
+    m:0x0 + c:121
+
+#decrease volume (Fn + <F2>)
+"amixer set Master 2-"
+    m:0x0 + c:122
+
+#increase volume (Fn + <F3>)
+"amixer set Master 2+"
+    m:0x0 + c:123
+
+#decrease brightness (Fn + <F5>)
+"xbacklight -dec 20"
+    m:0x0 + c:232
+
+#increase brightness (Fn + <F6>)
+"xbacklight -inc 20"
+    m:0x0 + c:233
