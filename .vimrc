@@ -31,8 +31,11 @@ set ignorecase						" ignore case when searching
 set smartcase						" uppercase causes case-sensitive search
 
 " change settings based on filetype
-autocmd Filetype ruby setlocal shiftwidth=2 tabstop=2
-autocmd Filetype sh setlocal shiftwidth=2 tabstop=2
+autocmd Filetype ruby,eruby setlocal shiftwidth=2 tabstop=2
+autocmd Filetype ruby,eruby set filetype=ruby.eruby.chef
+autocmd Filetype php setlocal shiftwidth=2 tabstop=2
+autocmd Filetype html setlocal shiftwidth=2 tabstop=2
+autocmd Filetype xml setlocal shiftwidth=2 tabstop=2
 
 " code completion 
 set tags=~/.vim/tags/*
@@ -66,9 +69,9 @@ Bundle 'gmarik/Vundle.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'rking/ag.vim'
-Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'Valloric/YouCompleteMe'
+"Bundle 'ervandew/supertab'
+Bundle 'Valloric/YouCompleteMe'
  
 " color and design plugins
 "Bundle 'altercation/vim-colors-solarized'
@@ -80,6 +83,7 @@ Bundle 'itchyny/lightline.vim'
 "Bundle 'joonty/vim-phpunitqf'
 "Bundle 'joonty/vim-phpqa'
 Bundle 'joonty/vdebug'
+Bundle 'xsbeats/vim-blade'
 
 " python plugins
 "Bundle 'joonty/vdebug'
@@ -88,6 +92,11 @@ Bundle 'joonty/vdebug'
 "Bundle 'joonty/vdebug'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
+Bundle 'Keithbsmiley/rspec.vim'
+
+" ruby chef plugins
+Bundle 't9md/vim-chef'
+"Bundle 'vadv/vim-chef'
 
 " js plugins
 Bundle 'moll/vim-node'
@@ -164,6 +173,4 @@ endfunction
 "set background=dark
 "set background=light
 "colorscheme solarized
-"colorscheme molokai
-
-
+colorscheme Monokai
