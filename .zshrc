@@ -61,3 +61,6 @@ alias pacins='sudo pacman -S'
 alias pacquery='sudo pacman -Q'
 alias pacsearch='sudo pacman -Ss'
 alias orphans='sudo pacman -Rns $(pacman -Qtdq)'
+
+# ls aliases
+alias ll='ls -l'
