@@ -32,7 +32,6 @@ set smartcase						" uppercase causes case-sensitive search
 
 " change settings based on filetype
 autocmd Filetype ruby,eruby setlocal shiftwidth=2 tabstop=2
-autocmd Filetype ruby,eruby set filetype=ruby.eruby.chef
 autocmd Filetype php setlocal shiftwidth=2 tabstop=2
 autocmd Filetype html setlocal shiftwidth=2 tabstop=2
 autocmd Filetype xml setlocal shiftwidth=2 tabstop=2
@@ -105,6 +104,9 @@ Bundle 'marijnh/tern_for_vim'
 
 " general coding plugins
 Bundle 'scrooloose/syntastic'
+
+" latex plugins
+Bundle 'LaTeX-Box-Team/LaTeX-Box'
 
 
 " vundle settings end 
