@@ -22,11 +22,17 @@ if [ -s ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
 fi
 
+# setup xbindkeys keybindings for laptop
+#xbindkeys
+
 # start terminal emulation daemon
 /usr/bin/urxvtd -q -o -f 
 
 # set up wallpaper
 sh ~/.fehbg &
+ 
+# eanble syndaemon(no mouse clicks while typing) for notebook
+#syndaemon -t -k -i 2
 
 # set up virtual window manager for VirtualMachines
 #wmname LG3D
