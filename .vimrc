@@ -99,8 +99,13 @@ Bundle 't9md/vim-chef'
 
 " js plugins
 Bundle 'moll/vim-node'
+Bundle 'pangloss/vim-javascript'
+Bundle 'claco/jasmine.vim'
+Bundle 'burnettk/vim-angular'
 Bundle 'myhere/vim-nodejs-complete'
 Bundle 'marijnh/tern_for_vim'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'jelera/vim-javascript-syntax'
 
 " general coding plugins
 Bundle 'scrooloose/syntastic'
