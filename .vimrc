@@ -35,6 +35,7 @@ autocmd Filetype ruby,eruby setlocal shiftwidth=2 tabstop=2
 autocmd Filetype php setlocal shiftwidth=2 tabstop=2
 autocmd Filetype html setlocal shiftwidth=2 tabstop=2
 autocmd Filetype xml setlocal shiftwidth=2 tabstop=2
+autocmd Filetype tex setlocal spell spelllang=en,de
 
 " code completion 
 set tags=~/.vim/tags/*
@@ -121,7 +122,7 @@ filetype plugin indent on
 
 "###---- plugin settings ----###"
 " YouCompleteMe
-"let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
 
 " lightline
 let g:lightline = {
