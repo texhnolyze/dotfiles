@@ -1,0 +1,27 @@
+#!/bin/ruby
+
+require_relative './lib/xresources_accessor'
+
+def change_font_size(arg)
+    accessor = Xresources_Accessor.new
+    lines = edit_xresources(arg, accessor.path)
+    accessor.create_tmp_xresources(accessor.path, lines)
+end
+
+def edit_xresources(arg, path)
+    IO.readlines(path).map do |line|
+        edit_font_lines(line, arg) || line
+    end
+end
+
+def edit_font_lines(line, arg)
+    edit_size(line, arg) if line =~ /^urxvt.*font/i
+end
+
+def edit_size(line, arg)
+    line.gsub(/\d+/) do |match| 
+        match.to_i.public_send(arg[0].to_sym, arg[1].to_i)
+    end
+end
+
+change_font_size(ARGV)
