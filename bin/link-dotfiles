@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+DOTFILE_DIR=~/dotfiles
+cd $DOTFILE_DIR
+
+DOTFILES="$(ls -d1 .[a-z]*)"
+for file in $DOTFILES; do
+    ln -s ~/dotfiles/$file ~/$file
+done
