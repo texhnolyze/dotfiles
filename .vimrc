@@ -6,11 +6,18 @@ set encoding=utf-8
 set ttyfast							" don't lag...
 set cursorline						" track position
 set nobackup						" disable backup files (filename~)
-set nowrap							" don't wrap lines
+
+set wrap							" wrap lines when textwidth is reached
+set textwidth=80                    " set max textwidth
+set showbreak=↪                     
+set list
+set listchars=tab:▸\ ,extends:❯,precedes:❮
+
 set splitbelow						" place new files below the current 
 set showmatch						" matching brackets & the like
-set clipboard+=unnamed				" yank and copy to X clipboard	
-set number							" show line numbers
+set matchtime=2						" time to jump back from matching bracket
+set clipboard+=unnamed				" yank and copy to X clipboard
+set relativenumber					" show relative line numbers for easy navigation
 set whichwrap=b,s,h,l,<,>,[,]		" whichwrap -- left/right keys can travere up/down
 set linebreak						" attempt to wrap lines cleanly
 set wildmenu						" enchanced tab-completion shows all matching cmds in popup menu
