@@ -41,7 +41,7 @@ alias pong='ping -c3 www.google.com'
 
 # git aliases
 alias gps='git push'
-alias gpl='git pull --ff-only'
+alias gpl='git pull --ff-only --rebase'
 alias gst='git status'
 alias gft='git fetch'
 alias gcm='git commit'
