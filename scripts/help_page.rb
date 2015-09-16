@@ -62,6 +62,7 @@ def write_tranlation_file(file, bu_key, row)
 	File.open(%(#{$destination_folder}/#{file}), 'a+') do |f| 
 		key = row["Key Web"].to_s
 		translation = format(row[bu_key].to_s)
+    translation = key if translation.empty? and !row[bu_key].to_s.include?('EMPTY')
 		f.write(%{#{key} = "#{translation}" \n}) 
 	end
 end
