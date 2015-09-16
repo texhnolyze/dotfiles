@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e 
+
+FEATURE="$1"
+COMMITS="$(git log --oneline | grep $FEATURE | awk {'print $1'})"
+
+for commit in $COMMITS; do
+    git show --name-only $commit
+done
