@@ -17,7 +17,7 @@ autoload -U colors && colors
 
 ###---- Command prompt ----###
 LPROMPT () {
-	PS1="┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}%(0?..%?)%{$reset_color%}]
+    PS1="┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}%(0?..%?)%{$reset_color%}]
 └───╼ "
 }
 
@@ -58,9 +58,10 @@ alias phpunit='phpunit --colors --verbose'
 alias pacupd='sudo pacman -Sy'
 alias pacupg='sudo pacman -Syu'
 alias pacins='sudo pacman -S'
+alias pacdel='sudo pacman -R'
 alias pacquery='sudo pacman -Q'
 alias pacsearch='sudo pacman -Ss'
 alias orphans='sudo pacman -Rns $(pacman -Qtdq)'
 
 # ls aliases
-alias ll='ls -l'
+alias ll='ls -lh'
