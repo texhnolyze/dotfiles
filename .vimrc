@@ -7,7 +7,6 @@ set ttyfast							" don't lag...
 set cursorline						" track position
 set nobackup						" disable backup files (filename~)
 
-set wrap							" wrap lines when textwidth is reached
 set textwidth=80                    " set max textwidth
 set showbreak=↪                     
 set list
@@ -46,6 +45,7 @@ autocmd Filetype tex setlocal spell spelllang=en,de
 
 " code completion 
 set tags=~/.vim/tags/*
+set tags=.git/tags
 
 " status bar
 " replaced by lightline
@@ -100,6 +100,7 @@ Bundle 'xsbeats/vim-blade'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'Keithbsmiley/rspec.vim'
+Bundle 'thoughtbot/vim-rspec'
 
 " ruby chef plugins
 Bundle 't9md/vim-chef'
@@ -183,6 +184,12 @@ function! MyFilename()
        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
        \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
+
+" vim-rspec
+map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>c :call RunCurrentSpecFile()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+
 
 " color settings
 "set background=dark
