@@ -15,24 +15,24 @@ fi
 #VBoxClient-all
 
 # loading and merging ~/.Xresources
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+[[ -f ~/.Xresources ]] && xrdb merge ~/.Xresources
 
 # load X modified keymap
-if [ -s ~/.Xmodmap ]; then
-    xmodmap ~/.Xmodmap
+if [[ -f ~/.Xmodmap ]]; then
+  xmodmap ~/.Xmodmap
 fi
 
 # setup xbindkeys keybindings for laptop
-#xbindkeys
+xbindkeys
 
 # start terminal emulation daemon
 /usr/bin/urxvtd -q -o -f 
 
 # set up wallpaper
 sh ~/.fehbg &
- 
+
 # eanble syndaemon(no mouse clicks while typing) for notebook
-#syndaemon -t -k -i 2
+syndaemon -d -t -k -i 2
 
 # set up virtual window manager for VirtualMachines
 #wmname LG3D
@@ -45,4 +45,15 @@ sh ~/.fehbg &
 #exec bspwm
 
 # execute dwm startup script
-#sh ~/bin/startdwm
+#sh ~/scripts/dwm-start
+
+if [[ $1='awesome' ]]; then
+    #start awesome session
+    exec awesome
+elif [[ $1='dwm' ]]; then
+    # execute dwm startup script
+    sh ~/scripts/dwm-start
+else
+    #start gnome3 session
+    exec gnome-session
+fi
