@@ -37,7 +37,7 @@ set ignorecase						" ignore case when searching
 set smartcase						" uppercase causes case-sensitive search
 
 " set dockerfile filetype for *.Dockerfile
-au BufRead,BufNewFile *.Dockefile set filetype=dockerfile
+au BufRead,BufNewFile *.Dockerfile set filetype=dockerfile
 
 " change settings based on filetype
 autocmd Filetype ruby,eruby setlocal shiftwidth=2 tabstop=2
