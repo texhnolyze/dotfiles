@@ -36,6 +36,9 @@ set incsearch 						" increment search
 set ignorecase						" ignore case when searching
 set smartcase						" uppercase causes case-sensitive search
 
+" set dockerfile filetype for *.Dockerfile
+au BufRead,BufNewFile *.Dockefile set filetype=dockerfile
+
 " change settings based on filetype
 autocmd Filetype ruby,eruby setlocal shiftwidth=2 tabstop=2
 autocmd Filetype php setlocal shiftwidth=2 tabstop=2
@@ -105,6 +108,10 @@ Bundle 'thoughtbot/vim-rspec'
 " ruby chef plugins
 Bundle 't9md/vim-chef'
 "Bundle 'vadv/vim-chef'
+
+" clojure plugins
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
 
 " js plugins
 Bundle 'moll/vim-node'
