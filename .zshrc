@@ -2,18 +2,26 @@
 HISTFILE=~/.histfile
 HISTSIZE=5000
 SAVEHIST=5000
-setopt appendhistory autocd beep extendedglob nomatch notify completealiases HIST_IGNORE_DUPS
+
+setopt appendhistory 
+setopt autocd 
+setopt beep 
+setopt extendedglob 
+setopt nomatch 
+setopt notify 
+setopt completealiases 
+setopt HIST_IGNORE_DUPS
+
 bindkey -v
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/soma/.zshrc'
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
 autoload -U colors && colors
-
 
 ###---- Command prompt ----###
 LPROMPT () {
@@ -26,8 +34,8 @@ LPROMPT
 
 ###---- Colour utils ----###
 export GREP_COLOR="1;31"
+alias ls="ls --color=auto"
 alias grep="grep --color=auto"
-alias "ls=ls --color=auto"
 
 # colors for ls
 if [[ -f ~/.dir_colors ]]; then
@@ -35,16 +43,25 @@ if [[ -f ~/.dir_colors ]]; then
 fi
 
 
+###---- Keybindings ---###
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+bindkey "^R" history-incremental-search-backward
+
+
 ###---- Aliases ---###
 # generel aliases
 alias pong='ping -c3 www.google.com'
+alias ll='ls -l'
 
 # git aliases
 alias gps='git push'
+alias gpso='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
 alias gpl='git pull --ff-only --rebase'
 alias gst='git status'
 alias gft='git fetch'
 alias gcm='git commit'
+alias gmg='git merge'
 alias gaa='git add -A'
 alias gad='git add'
 alias gco='git checkout'
@@ -62,6 +79,3 @@ alias pacdel='sudo pacman -R'
 alias pacquery='sudo pacman -Q'
 alias pacsearch='sudo pacman -Ss'
 alias orphans='sudo pacman -Rns $(pacman -Qtdq)'
-
-# ls aliases
-alias ll='ls -lh'
