@@ -14,6 +14,12 @@ URxvt.scrollBar_right: false
 URxvt.scrollBar: false
 URxvt.borderLess: false
 
+! do not autoscroll when going back in buffer
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyKeypress: true
+
+
 ! teh transparency stuff
 !URxvt.inheritPixmap: true
 !URxvt.tintColor: #6E6E6E
