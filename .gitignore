@@ -1,3 +1,8 @@
 # ignore all vim swap files
 *.swp
 
+# ignore .config folder by default
+.config/*
+
+.config/sxhkd
+.config/bspwm
