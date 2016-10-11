@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+ATOM_CONFIG_DIR=~/dotfiles/atom
+
+DOTFILES="$(git ls-tree --name-only HEAD .[a-zA-Z]*)"
+
+# install all atom packages
+cat "$ATOM_CONFIG_DIR/package-list" | apm install
+
+# link atom config folder 
+ln -sf "$ATOM_CONFIG_DIR" ~/.atom
