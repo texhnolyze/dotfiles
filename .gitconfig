@@ -2,3 +2,6 @@
 	default = simple
 [init]
 	templatedir = ~/.git_template
+[user]
+	name = texhnolyze
+	email = joern-g@web.de
