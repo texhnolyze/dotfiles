@@ -7,5 +7,6 @@ cd $DOTFILE_DIR
 DOTFILES="$(git ls-tree --name-only HEAD .[a-zA-Z]*)"
 
 for file in $DOTFILES; do
-    ln -sf ~/dotfiles/$file ~/$file
+    echo "linking ~/dotfiles/$file to ~/$file"
+    ln -sfn ~/dotfiles/"$file" ~/"$file"
 done
