@@ -11,4 +11,5 @@ if [[ ! -d $VIM_CONFIG_DIR/bundle/Vundle.vim/.git ]]; then
 fi
 
 # install vim plugins with vundle in background
+echo "install vim plugins with vundle"
 nohup vim +PluginInstall +qall &> /dev/null &
