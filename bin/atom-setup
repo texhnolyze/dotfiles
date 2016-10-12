@@ -3,8 +3,8 @@ set -e
 
 ATOM_CONFIG_DIR=~/dotfiles/atom
 
-# install all atom packages
-apm install $(cat "$ATOM_CONFIG_DIR/package-list" | xargs)
-
 # link atom config folder
 ln -sf "$ATOM_CONFIG_DIR" ~/.atom/
+
+# install all atom packages
+apm install "$(xargs -a "$ATOM_CONFIG_DIR/package-list")"
