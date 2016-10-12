@@ -107,7 +107,10 @@ Bundle 'thoughtbot/vim-rspec'
 
 " ruby chef plugins
 Bundle 't9md/vim-chef'
-"Bundle 'vadv/vim-chef'
+"bundle 'vadv/vim-chef'
+
+" saltstack plugins 
+Bundle 'saltstack/salt-vim'
 
 " clojure plugins
 Bundle 'guns/vim-clojure-static'
