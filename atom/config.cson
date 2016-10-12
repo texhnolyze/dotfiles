@@ -20,7 +20,6 @@
   "todo-show":
     sortAscending: false
     sortBy: "Type"
-  "tree-view":
-    hideVcsIgnoredFiles: true
+  "tree-view": {}
   welcome:
     showOnStartup: false
