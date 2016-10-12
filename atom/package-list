@@ -29,6 +29,7 @@ minimap@4.25.0
 node-debugger@1.9.0
 pigments@0.37.0
 project-manager@3.2.4
+relative-numbers@0.5.1
 ruby-block@0.3.5
 ruby-test@0.9.17
 script@3.10.1
