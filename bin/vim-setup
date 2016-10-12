@@ -4,9 +4,11 @@ set -e
 VIM_CONFIG_DIR=~/.vim
 
 # get vundle plugin manager
-git clone \
-  https://github.com/VundleVim/Vundle.vim.git \
-  $VIM_CONFIG_DIR/bundle/Vundle.vim
+if [[ ! -d $VIM_CONFIG_DIR/bundle/Vundle.vim/.git ]]; then
+    git clone \
+      https://github.com/VundleVim/Vundle.vim.git \
+      $VIM_CONFIG_DIR/bundle/Vundle.vim
+fi
 
 # install vim plugins with vundle in background
 nohup vim +PluginInstall +qall &> /dev/null &
