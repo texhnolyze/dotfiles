@@ -3,9 +3,6 @@
     general:
       _analyticsUserId: "6464f95a-f146-448a-8699-9e672a395f16"
   core:
-    disabledPackages: [
-      "linter-rubocop"
-    ]
     themes: [
       "atom-dark-ui"
       "atom-dark-syntax"
@@ -17,12 +14,13 @@
   "exception-reporting":
     userId: "cc24bde8-41d9-d57d-fbd3-21653caeaff4"
   "linter-rubocop":
-    command: "C:/cygwin64/home/jgg/bin/rubocop"
+    command: "rubocop"
   "ruby-test":
     specFramework: "rspec"
   "todo-show":
     sortAscending: false
     sortBy: "Type"
-  "tree-view": {}
+  "tree-view":
+    hideVcsIgnoredFiles: true
   welcome:
     showOnStartup: false

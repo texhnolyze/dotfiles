@@ -6,3 +6,8 @@
 
 .config/sxhkd
 .config/bspwm
+
+# ignore atom config folders
+atom/*/ 
+atom/nohup.out
+atom/projects.cson
