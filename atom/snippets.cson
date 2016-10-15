@@ -25,7 +25,18 @@
      'prefix': 'stb'
      'body': 'sinon.stub()'
 
-'.source.js':
-   'sinon stub was called with':
-     'prefix': 'called'
-     'body': 'to.have.been.calledWith($1)'
+   'sinon stub withArgs returns':
+     'prefix': 'stbret'
+     'body': '.withArgs($1).returns($2)'
+
+   'expect sinon stub was called with':
+     'prefix': 'expcall'
+     'body': 'expect($1).calledWith($2)'
+
+   'expect identity equality':
+     'prefix': 'expequal'
+     'body': 'expect($1).equal($2)'
+
+   'expect equality':
+     'prefix': 'expeql'
+     'body': 'expect($1).eql($2)'
