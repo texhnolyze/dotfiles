@@ -79,3 +79,6 @@ alias pacdel='sudo pacman -R'
 alias pacquery='sudo pacman -Q'
 alias pacsearch='sudo pacman -Ss'
 alias orphans='sudo pacman -Rns $(pacman -Qtdq)'
+
+# utitlity aliases
+alias slideshow='feh -rzZFD 5'
