@@ -14,11 +14,14 @@ URxvt.scrollBar_right: false
 URxvt.scrollBar: false
 URxvt.borderLess: false
 
+! enable scrolling in e.g. less
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
 ! do not autoscroll when going back in buffer
 URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: true
 URxvt.scrollTtyKeypress: true
-
 
 ! teh transparency stuff
 !URxvt.inheritPixmap: true
