@@ -3,38 +3,40 @@ syntax on
 scriptencoding utf-8
 set encoding=utf-8
 
-set ttyfast							" don't lag...
-set cursorline						" track position
-set nobackup						" disable backup files (filename~)
+set mouse=a                         " enable mouse scrolling
+set ttyfast                         " don't lag...
+set cursorline                      " track position
+set nobackup                        " disable backup files (filename~)
 
+"set wrap                            " wrap lines when textwidth is reached
 set textwidth=80                    " set max textwidth
 set showbreak=↪                     
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 
-set splitbelow						" place new files below the current 
-set showmatch						" matching brackets & the like
-set matchtime=2						" time to jump back from matching bracket
-set clipboard+=unnamed				" yank and copy to X clipboard
-set relativenumber					" show relative line numbers for easy navigation
-set whichwrap=b,s,h,l,<,>,[,]		" whichwrap -- left/right keys can travere up/down
-set linebreak						" attempt to wrap lines cleanly
-set wildmenu						" enchanced tab-completion shows all matching cmds in popup menu
-set wildmode=list:longest,full		" full completion options
-set autoread						" automatically read changes to file from outside
+set splitbelow                      " place new files below the current 
+set showmatch                       " matching brackets & the like
+set matchtime=2                     " time to jump back from matching bracket
+set clipboard+=unnamed              " yank and copy to X clipboard
+set relativenumber                  " show relative line numbers for easy navigation
+set whichwrap=b,s,h,l,<,>,[,]       " whichwrap -- left/right keys can travere up/down
+set linebreak                       " attempt to wrap lines cleanly
+set wildmenu                        " enchanced tab-completion shows all matching cmds in popup menu
+set wildmode=list:longest,full      " full completion options
+set autoread                        " automatically read changes to file from outside
 
 " tabs and indenting
-set tabstop=4						" tabs appear as n number of columns
-set shiftwidth=4					" n columns for auto-indenting
-set expandtab						" insert spaces instead of tabs
-set autoindent 						" auto indents next new line
-set smartindent 					" smart indent
+set tabstop=4                       " tabs appear as n number of columns
+set shiftwidth=4                    " n columns for auto-indenting
+set expandtab                       " insert spaces instead of tabs
+set autoindent                      " auto indents next new line
+set smartindent                     " smart indent
 
 " searching
-set hlsearch						" hightlight search results
-set incsearch 						" increment search
-set ignorecase						" ignore case when searching
-set smartcase						" uppercase causes case-sensitive search
+set hlsearch                        " hightlight search results
+set incsearch                       " increment search
+set ignorecase                      " ignore case when searching
+set smartcase                       " uppercase causes case-sensitive search
 
 " set dockerfile filetype for *.Dockerfile
 au BufRead,BufNewFile *.Dockerfile set filetype=dockerfile
@@ -42,6 +44,7 @@ au BufRead,BufNewFile *.Dockerfile set filetype=dockerfile
 " change settings based on filetype
 autocmd Filetype ruby,eruby setlocal shiftwidth=2 tabstop=2
 autocmd Filetype php setlocal shiftwidth=2 tabstop=2
+autocmd Filetype lua setlocal shiftwidth=2 tabstop=2
 autocmd Filetype html setlocal shiftwidth=2 tabstop=2
 autocmd Filetype xml setlocal shiftwidth=2 tabstop=2
 autocmd Filetype tex setlocal spell spelllang=en,de
@@ -66,7 +69,7 @@ map <C-l> <C-w>l<C-w><Esc>
 
 "###---- plugins ----###"
 " vundle settings
-set nocompatible					" leave the old ways behind
+set nocompatible                    " leave the old ways behind
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim/
@@ -107,7 +110,7 @@ Bundle 'thoughtbot/vim-rspec'
 
 " ruby chef plugins
 Bundle 't9md/vim-chef'
-"bundle 'vadv/vim-chef'
+"Bundle 'vadv/vim-chef'
 
 " saltstack plugins 
 Bundle 'saltstack/salt-vim'
