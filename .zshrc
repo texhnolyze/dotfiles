@@ -20,6 +20,7 @@ zstyle :compinstall filename '/home/soma/.zshrc'
 
 autoload -Uz compinit
 compinit
+# End of lines added by compinstall
 
 autoload -U colors && colors
 
