@@ -47,6 +47,8 @@ autocmd Filetype php setlocal shiftwidth=2 tabstop=2
 autocmd Filetype lua setlocal shiftwidth=2 tabstop=2
 autocmd Filetype html setlocal shiftwidth=2 tabstop=2
 autocmd Filetype xml setlocal shiftwidth=2 tabstop=2
+autocmd Filetype yaml setlocal shiftwidth=2 tabstop=2
+autocmd Filetype sass setlocal shiftwidth=2 tabstop=2
 autocmd Filetype tex setlocal spell spelllang=en,de
 
 " code completion 
