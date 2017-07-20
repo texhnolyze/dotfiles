@@ -33,7 +33,7 @@ current_branch() {
 
 ###---- Command prompt ----###
 LPROMPT () {
-    PS1='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(current_branch)%{$reset_color%}]
+    PS1='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}($(current_branch))%{$reset_color%}]
 └─── '
 }
 
