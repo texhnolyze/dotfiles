@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+
+from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+import logging
+
+class ServerHandler(BaseHTTPRequestHandler):
+    def _set_response_headers(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+
+    def _log_request_headers(self):
+        logging.error(self.headers)
+
+    def do_GET(self):
+        self._log_request_headers()
+        self._set_response_headers()
+        self.wfile.write("<html><body><h1>hi!</h1></body></html>")
+
+    def do_HEAD(self):
+        self._log_request_headers()
+        self._set_response_headers()
+        
+    def do_POST(self):
+        self._log_request_headers()
+        content_len = int(self.headers.getheader('content-length', 0))
+        post_body = self.rfile.read(content_len)
+        logging.error(post_body)
+        self._set_response_headers()
+        self.wfile.write("<html><body><h1>POST!</h1></body></html>")
+
+    
+def run(server_class=HTTPServer, handler_class=ServerHandler, port=80):
+    server_address = ('localhost', port)
+    httpd = server_class(server_address, handler_class)
+    print 'Starting httpd...'
+    httpd.serve_forever()
+
+if __name__ == "__main__":
+    from sys import argv
+
+    if len(argv) == 2:
+        run(port=int(argv[1]))
+    else:
+        run()

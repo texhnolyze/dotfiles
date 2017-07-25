@@ -1,0 +1,11 @@
+#!/bin/sh -e 
+
+ALL_COMMITS="`git log \
+    --format=oneline \
+    --reverse \
+    | grep $1 \
+    | grep -v Merge \
+    | awk '{print $1}' \
+    | xargs`"
+    
+git cherry-pick ${ALL_COMMITS}

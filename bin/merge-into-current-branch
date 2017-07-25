@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+ORIGINAL_BRANCH="`git rev-parse --abbrev-ref HEAD`"
+BRANCH_TO_MERGE="$1"
+
+git add --all
+git stash
+git checkout $BRANCH_TO_MERGE
+git pull --ff-only --rebase
+git checkout $ORIGINAL_BRANCH
+git merge $BRANCH_TO_MERGE --no-edit
+git stash apply

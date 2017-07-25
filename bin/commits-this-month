@@ -1,0 +1,15 @@
+#!/bin/sh
+
+GIT_USER_NAME=`git config user.name`
+
+DATE_START_OF_MONTH=`date "+%Y-%m-01"`
+DATE_START_OF_NEXT_MONTH=`date -d "$DATE_START_OF_MONTH 1 month" "+%Y-%m-%d"`
+
+
+git log \
+    --after={"$DATE_START_OF_MONTH"} \
+    --before={"$DATE_START_OF_NEXT_MONTH"} \
+    --author="$GIT_USER_NAME" \
+    --reverse \
+    --pretty=format:"%cd  %h  %s" \
+    --date=short 
