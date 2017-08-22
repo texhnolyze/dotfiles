@@ -27,13 +27,13 @@ autoload -U colors && colors
 
 current_branch() {
     if [[ -d .git ]]; then
-        echo "$(git rev-parse --abbrev-ref HEAD)"
+        echo "($(git rev-parse --abbrev-ref HEAD))"
     fi
 }
 
 ###---- Command prompt ----###
 LPROMPT () {
-    PS1='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}($(current_branch))%{$reset_color%}]
+    PS1='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(current_branch)%{$reset_color%}]
 └─── '
 }
 
