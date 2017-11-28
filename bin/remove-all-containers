@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+### remove all docker containers including their volumes 
+### for fast cleanup during testing and development
+
+CONTAINER_IDS="$(docker ps -a | awk '{print $1}' | xargs | sed s/CONTAINER.//g)"
+docker rm -v $CONTAINER_IDS
