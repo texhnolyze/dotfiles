@@ -9,7 +9,7 @@ set cursorline                      " track position
 set nobackup                        " disable backup files (filename~)
 
 "set wrap                            " wrap lines when textwidth is reached
-set textwidth=80                    " set max textwidth
+"set textwidth=80                    " set max textwidth
 set showbreak=↪                     
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮
@@ -110,12 +110,8 @@ Bundle 'tpope/vim-rails'
 Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'thoughtbot/vim-rspec'
 
-" ruby chef plugins
-Bundle 't9md/vim-chef'
-"Bundle 'vadv/vim-chef'
-
-" saltstack plugins 
-Bundle 'saltstack/salt-vim'
+" rust plugins
+Bundle 'rust-lang/rust.vim'
 
 " clojure plugins
 Bundle 'guns/vim-clojure-static'
@@ -133,6 +129,13 @@ Bundle 'jelera/vim-javascript-syntax'
 
 " general coding plugins
 Bundle 'scrooloose/syntastic'
+
+" ruby chef plugins
+Bundle 't9md/vim-chef'
+"Bundle 'vadv/vim-chef'
+
+" saltstack plugins 
+Bundle 'saltstack/salt-vim'
 
 " latex plugins
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
