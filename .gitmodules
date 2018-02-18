@@ -1,0 +1,6 @@
+[submodule "vim/.vim"]
+	path = vim/.vim
+	url = https://github.com/texhnolyze/vimrc.git
+[submodule "tmux/.tmux"]
+	path = tmux/.tmux
+	url = https://github.com/texhnolyze/tmux-conf.git
