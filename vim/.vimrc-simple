@@ -10,11 +10,11 @@ set nobackup                        " disable backup files (filename~)
 
 "set wrap                            " wrap lines when textwidth is reached
 "set textwidth=80                    " set max textwidth
-set showbreak=↪                     
+set showbreak=↪
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 
-set splitbelow                      " place new files below the current 
+set splitbelow                      " place new files below the current
 set showmatch                       " matching brackets & the like
 set matchtime=2                     " time to jump back from matching bracket
 set clipboard+=unnamed              " yank and copy to X clipboard
@@ -50,14 +50,15 @@ autocmd Filetype xml setlocal shiftwidth=2 tabstop=2
 autocmd Filetype yaml setlocal shiftwidth=2 tabstop=2
 autocmd Filetype sass setlocal shiftwidth=2 tabstop=2
 autocmd Filetype tex setlocal spell spelllang=en,de
+autocmd Filetype markdown setlocal spell spelllang=en,de
 
-" code completion 
+" code completion
 set tags=~/.vim/tags/*
 set tags=.git/tags
 
 " status bar
 " replaced by lightline
-"set statusline=\ \%f%m%r%h%w\ ::\ %y\ [%{&ff}]\%=\ [%p%%:\ %l/%L]\ 
+"set statusline=\ \%f%m%r%h%w\ ::\ %y\ [%{&ff}]\%=\ [%p%%:\ %l/%L]\
 set laststatus=2
 set cmdheight=1
 
@@ -87,7 +88,7 @@ Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdtree'
 "Bundle 'ervandew/supertab'
 Bundle 'Valloric/YouCompleteMe'
- 
+
 " color and design plugins
 "Bundle 'altercation/vim-colors-solarized'
 "Bundle 'tomasr/molokai'
@@ -130,18 +131,18 @@ Bundle 'jelera/vim-javascript-syntax'
 " general coding plugins
 Bundle 'scrooloose/syntastic'
 
+" latex plugins
+Bundle 'LaTeX-Box-Team/LaTeX-Box'
+
 " ruby chef plugins
 Bundle 't9md/vim-chef'
 "Bundle 'vadv/vim-chef'
 
-" saltstack plugins 
+" saltstack plugins
 Bundle 'saltstack/salt-vim'
 
-" latex plugins
-Bundle 'LaTeX-Box-Team/LaTeX-Box'
 
-
-" vundle settings end 
+" vundle settings end
 call vundle#end()
 filetype plugin indent on
 
