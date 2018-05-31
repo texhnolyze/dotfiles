@@ -1,0 +1,21 @@
+#!/bin/bash
+
+APP_NAME="$1"
+VPN_INTERFACE="tun0"
+APP_PID="$(pgrep $APP_NAME)"
+
+if ! [[ $APP_PID ]]; then
+  echo "no app with name $APP_NAME is currently running"
+  exit 1
+fi
+
+while sleep 3; do
+  IS_VPN_RUNNING="$(ip link show | grep $VPN_INTERFACE)"
+
+  if ! [[ $IS_VPN_RUNNING ]]; then
+    echo "vpn connection was closed"
+    echo "killing app $APP_NAME with pid $APP_PID"
+    kill $APP_PID
+    break
+  fi
+done
