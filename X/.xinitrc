@@ -24,7 +24,7 @@ fi
 [[ -f ~/.xbindkeysrc ]] && xbindkeys
 
 # start terminal emulation daemon
-/usr/bin/urxvtd -q -o -f 
+/usr/bin/urxvtd -q -o -f
 
 # set up wallpaper for window managers
 sh ~/.fehbg &
