@@ -87,13 +87,12 @@ alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=f
 alias rspec='rspec --color --format documentation'
 alias phpunit='phpunit --colors --verbose'
 
-# pacman aliases
-alias pacupd='sudo pacman -Sy'
-alias pacupg='sudo pacman -Syu'
+# pacman/yay aliases
+alias pacupg='yay'
 alias pacins='sudo pacman -S'
-alias pacdel='sudo pacman -R'
+alias pacdel='yay -Rns'
 alias pacquery='sudo pacman -Q'
-alias pacsearch='sudo pacman -Ss'
+alias pacsearch='yay -Ss'
 alias orphans='sudo pacman -Rns $(pacman -Qtdq)'
 
 # utitlity aliases
