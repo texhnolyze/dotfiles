@@ -106,3 +106,8 @@ alias journ='journalctl -xe -b'
 # utitlity aliases
 alias slideshow='feh -rzZFD 5'
 alias dirsizes='du -hd1 | sort -h'
+
+
+###---- Extensions ----###
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
