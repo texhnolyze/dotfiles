@@ -3,26 +3,25 @@ HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
 
-setopt appendhistory 
+setopt appendhistory
 setopt histignorealldups
 setopt sharehistory
-setopt autocd 
-setopt beep 
-setopt extendedglob 
-setopt nomatch 
-setopt notify 
-setopt nocompletealiases 
+setopt autocd
+setopt beep
+setopt extendedglob
+setopt nomatch
+setopt notify
+setopt nocompletealiases
 setopt promptsubst
 
+# vim style keybindings
 bindkey -v
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/soma/.zshrc'
 
-autoload -Uz compinit
-compinit
-
+autoload -U compinit && compinit
 autoload -U colors && colors
 
 current_branch() {
@@ -40,7 +39,7 @@ LPROMPT () {
 LPROMPT
 
 
-###---- Colour utils ----###
+###---- Color utils ----###
 export GREP_COLOR="1;31"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
@@ -59,10 +58,11 @@ bindkey "^R" history-incremental-search-backward
 
 ###---- Aliases ---###
 # generel aliases
-alias pong='ping -c3 www.google.com'
-alias ls="ls --color=auto"
+alias ...='cd ../../'
+alias ls='ls --color=auto'
 alias ll='ls -lh'
-alias grep="grep --color=auto"
+alias grep='grep --color=auto'
+alias pong='ping -c3 www.google.com'
 
 # git aliases
 alias gps='git push'
