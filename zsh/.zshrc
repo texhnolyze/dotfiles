@@ -60,14 +60,20 @@ alias grep="grep --color=auto"
 
 # colors for ls
 if [[ -f ~/.dir_colors ]]; then
-	eval $(dircolors -b ~/.dir_colors)
+  eval $(dircolors -b ~/.dir_colors)
 fi
 
 
 ###---- Keybindings ---###
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
-bindkey "^R" history-incremental-search-backward
+
+# search history with fzf if installed, default otherwise
+if [[ -d '/usr/share/fzf' ]]; then
+  . /usr/share/fzf/key-bindings.zsh
+else
+  bindkey '^R' history-incremental-search-backward
+fi
 
 
 ###---- Aliases ---###
