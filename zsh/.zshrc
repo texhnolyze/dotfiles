@@ -95,5 +95,13 @@ alias pacquery='sudo pacman -Q'
 alias pacsearch='yay -Ss'
 alias orphans='sudo pacman -Rns $(pacman -Qtdq)'
 
+# systemd aliases
+alias sstart='systemctl restart'
+alias sstop='systemctl stop'
+alias sstat='systemctl status'
+alias senab='systemctl status'
+alias sdisab='systemctl status'
+alias journ='journalctl -xe -b'
+
 # utitlity aliases
 alias slideshow='feh -rzZFD 5'
