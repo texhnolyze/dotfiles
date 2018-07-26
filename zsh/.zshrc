@@ -131,3 +131,7 @@ alias dirsizes='du -hd1 | sort -h'
 ###---- Extensions ----###
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+if [[ -f ~/.zsh_plugins.sh ]]; then
+  source ~/.zsh_plugins.sh
+fi

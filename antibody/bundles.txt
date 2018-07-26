@@ -1,0 +1,2 @@
+# google translate cli written in awk
+soimort/translate-shell branch:develop
