@@ -109,7 +109,7 @@ alias phpunit='phpunit --colors --verbose'
 
 # pacman/yay aliases
 alias pacupg='yay'
-alias pacins='sudo pacman -S'
+alias pacins='yay -S'
 alias pacdel='yay -Rns'
 alias pacquery='sudo pacman -Q'
 alias pacsearch='yay -Ss'
