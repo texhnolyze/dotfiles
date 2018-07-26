@@ -1,18 +1,32 @@
-# Lines configured by zsh-newuser-install
+#!/bin/zsh
+
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
 
-setopt appendhistory
-setopt histignorealldups
-setopt sharehistory
-setopt autocd
-setopt beep
-setopt extendedglob
-setopt nomatch
-setopt notify
-setopt nocompletealiases
-setopt promptsubst
+# adds history incrementally and share it across sessions
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+
+# add timestamps to history
+setopt EXTENDED_HISTORY
+
+# don't record dupes in history
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_VERIFY
+setopt HIST_EXPIRE_DUPS_FIRST
+
+setopt AUTO_CD
+setopt BEEP
+setopt EXTENDED_GLOB
+setopt NO_MATCH
+setopt NOTIFY
+setopt NO_COMPLETE_ALIASES
+setopt PROMPT_SUBST
 
 # vim style keybindings
 bindkey -v
