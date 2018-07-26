@@ -105,3 +105,4 @@ alias journ='journalctl -xe -b'
 
 # utitlity aliases
 alias slideshow='feh -rzZFD 5'
+alias dirsizes='du -hd1 | sort -h'
