@@ -1,0 +1,6 @@
+#!/bin/sh
+
+gsettings set \
+  org.gnome.settings-daemon.plugins.power \
+  sleep-inactive-ac-type \
+  'suspend'
