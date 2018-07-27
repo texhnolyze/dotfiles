@@ -1,0 +1,5 @@
+#!/bin/sh
+
+COLOR_SCRIPT_DIR="$HOME/scripts/colors"
+COLOR_SCRIPT="$(find "$COLOR_SCRIPT_DIR" -type f | shuf -n 1)"
+exec "$COLOR_SCRIPT"
