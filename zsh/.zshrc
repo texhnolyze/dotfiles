@@ -6,19 +6,17 @@ SAVEHIST=100000
 
 # adds history incrementally and share it across sessions
 setopt SHARE_HISTORY
-setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 
 # add timestamps to history
 setopt EXTENDED_HISTORY
 
 # don't record dupes in history
-setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
-setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
-setopt HIST_VERIFY
+setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_VERIFY
 
 setopt AUTO_CD
 setopt BEEP
