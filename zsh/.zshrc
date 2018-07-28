@@ -31,6 +31,8 @@ setopt CORRECT_ALL
 
 # vim style keybindings
 bindkey -v
+# don't take 0.4s to vim modes
+export KEYTIMEOUT=1
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
