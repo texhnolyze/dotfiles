@@ -36,15 +36,22 @@ export KEYTIMEOUT=1
 
 autoload -U colors && colors
 
-current_branch() {
-  if [[ -d .git ]]; then
-    echo "($(git rev-parse --abbrev-ref HEAD))"
+function git_current_branch() {
+  local ref
+  ref=$(command git symbolic-ref --short --quiet HEAD 2> /dev/null)
+
+  local exit_code=$?
+  if [[ $exit_code != 0 ]]; then
+    [[ $exit_code == 128 ]] && return  # no git repo.
+    ref=$(command git rev-parse --abbrev-ref HEAD 2> /dev/null) || return
   fi
+
+  echo "($ref)"
 }
 
 ###---- Command prompt ----###
 LPROMPT () {
-  PS1='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(current_branch)%{$reset_color%}]
+  PS1='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch)%{$reset_color%}]
 └─── '
 }
 
