@@ -1,2 +1,10 @@
-# google translate cli written in awk
+djui/alias-tips
+rupa/z
+rust-lang/zsh-config
 soimort/translate-shell branch:develop
+texhnolyze/zsh-vimto
+
+zsh-users/zsh-completions
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
