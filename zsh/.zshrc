@@ -34,11 +34,6 @@ bindkey -v
 # don't take 0.4s to vim modes
 export KEYTIMEOUT=1
 
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/soma/.zshrc'
-
-autoload -U compinit && compinit
 autoload -U colors && colors
 
 current_branch() {
@@ -138,3 +133,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 if [[ -f ~/.zsh_plugins.sh ]]; then
   source ~/.zsh_plugins.sh
 fi
+
+# enable completions
+autoload -U compinit && compinit
