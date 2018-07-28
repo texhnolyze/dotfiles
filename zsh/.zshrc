@@ -69,25 +69,15 @@ if [[ -f ~/.dir_colors ]]; then
 fi
 
 
-###---- Keybindings ---###
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
-
-# search history with fzf if installed, default otherwise
-if [[ -d '/usr/share/fzf' ]]; then
-  . /usr/share/fzf/key-bindings.zsh
-else
-  bindkey '^R' history-incremental-search-backward
-fi
-
-
 ###---- Aliases ---###
 # generel aliases
+alias _='sudo'
 alias ...='cd ../../'
 alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias grep='grep --color=auto'
 alias pong='ping -c3 www.google.com'
+alias cpv=' rsync -pogbr -hhh --backup-dir=/tmp/rsync -e /dev/null --progress'
 
 # git aliases
 alias gps='git push'
