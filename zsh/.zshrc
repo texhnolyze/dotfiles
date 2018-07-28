@@ -126,11 +126,34 @@ alias dirsizes='du -hd1 | sort -h'
 
 
 ###---- Extensions ----###
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# search history with fzf if installed, default otherwise
+if [[ -d '/usr/share/fzf' ]]; then
+  source /usr/share/fzf/key-bindings.zsh
+else
+  bindkey '^R' history-incremental-search-backward
+fi
+
+# edit current command in EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^XE' edit-command-line
+bindkey '^X^E' edit-command-line
 
 if [[ -f ~/.zsh_plugins.sh ]]; then
   source ~/.zsh_plugins.sh
+
+  # zsh-history-substring-search plugin keybindings
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+  bindkey -M vicmd 'k' history-substring-search-up
+  bindkey -M vicmd 'j' history-substring-search-down
+
+  # zsh-aliases settings
+  export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
+  export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Use alias stupid: "
+else
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # enable completions
