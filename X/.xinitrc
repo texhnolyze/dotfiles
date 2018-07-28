@@ -32,39 +32,28 @@ sh ~/.fehbg &
 # eanble syndaemon(no mouse clicks while typing) for notebook
 syndaemon -d -t -k -i 2
 
-if [[ "$1" = "awesome" ]]; then
-    # set up virtual window manager 
-    # for java gui compatibility
-    wmname LG3D
+# use gnome as default X session
+session=${1:-gnome}
 
-    # run awesome tiling wm
-    exec awesome
-elif [[ "$1" = "dwm" ]]; then
-    # set up virtual window manager 
-    # for java gui compatibility
-    wmname LG3D
-
-    # run dwm tiling wm startup script
-    sh ~/dotfiles/bin/dwm-start
-elif [[ "$1" = "bspwm" ]]; then
-    # set up virtual window manager 
+case $session in
+  bspwm             )
+    # set up virtual window manager
     # for java gui compatibility
     wmname LG3D
 
     # run bspwm and it's keybinding manager
     sxhkd &
-    exec bspwm
-elif [[ "$1" = "sway" ]]; then
-    # set up virtual window manager 
+    exec bspwm;;
+  dwm               )
+    # set up virtual window manager
     # for java gui compatibility
     wmname LG3D
 
-    # run sway wayland tiling wm
-    exec sway
-elif [[ "$1" = "xfce" ]]; then
-    # run xfce4 session
-    exec startxfce4
-else
-    # run gnome3 session
-    exec gnome-session
-fi
+    # run dwm tiling wm startup script
+    sh ~/dotfiles/bin/dwm-start;;
+  kde               ) exec startkde;;
+  xfce|xfce4        ) exec startxfce4;;
+  gnome|gnome3      ) exec gnome-session;;
+  # No known session, try to run it as command
+  *                 ) exec $1;;
+esac
