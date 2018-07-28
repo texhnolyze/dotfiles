@@ -26,6 +26,9 @@ setopt NOTIFY
 setopt NO_COMPLETE_ALIASES
 setopt PROMPT_SUBST
 
+# enable correction for mispelling
+setopt CORRECT_ALL
+
 # vim style keybindings
 bindkey -v
 
