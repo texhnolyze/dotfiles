@@ -53,6 +53,8 @@ URxvt.url-select.underline: true
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
+!URxvt.keysym.C-p: eval:paste_clipboard
+!URxvt.keysym.C-c: eval:selection_to_clipboard
 
 !! Colours
 !#include ".colours/lich"
