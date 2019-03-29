@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# shows all packages which were explicitly
+# installed with pacman and are neither a dependency
+# of any other package nor in the base/base-devel
+# package groups
+
+comm -23 \
+  <(pacman -Qet | sort) \
+  <(pacman -Sqg base base-devel | sort)
