@@ -116,8 +116,8 @@ alias orphans='sudo pacman -Rns $(pacman -Qtdq)'
 alias sstart='systemctl restart'
 alias sstop='systemctl stop'
 alias sstat='systemctl status'
-alias senab='systemctl status'
-alias sdisab='systemctl status'
+alias senab='systemctl enable'
+alias sdisab='systemctl disable'
 alias journ='journalctl -xe -b'
 
 # utitlity aliases
