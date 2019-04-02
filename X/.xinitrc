@@ -30,7 +30,7 @@ fi
 sh ~/.fehbg &
 
 # eanble syndaemon(no mouse clicks while typing) for notebook
-syndaemon -d -t -k -i 2
+type syndaemon &>/dev/null && syndaemon -d -t -k -i 2
 
 # use gnome as default X session
 session=${1:-gnome}
