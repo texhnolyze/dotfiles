@@ -1,15 +1,11 @@
-#!/bin/sh
-if ! type antibody > /dev/null 2>&1; then
-  install_antibody
-fi
-
-bundle_antibody
+#!/bin/bash
 
 install_antibody() {
-  if type yay > /dev/null 2>&1; then
+  if test yay &> /dev/null; then
     pacman -Q antibody || yay -S --needed --noconfirm antibody
-  elif type dpkg > /dev/null 2>&1; then
-    curl -sL https://github.com/getantibody/antibody/releases/download/v3.6.0/antibody_3.6.0_linux_amd64.deb /tmp/antibody.deb
+  elif test dpkg &> /dev/null; then
+    local dpkg_download_url="$(curl -s https://api.github.com/repos/getantibody/antibody/releases/latest | jq '.assets[] | select(.name | contains("amd64.deb")) | .browser_download_url')"
+    curl -sL "$dpkg_download_url" /tmp/antibody.deb
     dpkg -i /tmp/antibody.deb
   else
     echo "none of the normal installation methods supported"
@@ -21,5 +17,11 @@ install_antibody() {
 
 bundle_antibody() {
   antibody bundle < "$HOME/dotfiles/antibody/bundles.txt" > ~/.zsh_plugins.sh
-  #antibody update
+  antibody update
 }
+
+if ! test antibody &> /dev/null; then
+  install_antibody
+fi
+
+bundle_antibody
