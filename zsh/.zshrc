@@ -77,7 +77,7 @@ alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias grep='grep --color=auto'
 alias pong='ping -c3 www.google.com'
-alias cpv=' rsync -pogbr -hhh --backup-dir=/tmp/rsync -e /dev/null --progress'
+alias cpv='rsync -pogbr -hhh --backup-dir=/tmp/rsync -e /dev/null --progress'
 
 # git aliases
 alias gps='git push'
