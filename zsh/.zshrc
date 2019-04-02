@@ -120,6 +120,10 @@ alias senab='systemctl enable'
 alias sdisab='systemctl disable'
 alias journ='journalctl -xe -b'
 
+# kubernetes aliases
+alias k='kubectl'
+alias mk='minikube'
+
 # utitlity aliases
 alias slideshow='feh -rzZFD 5'
 alias dirsizes='du -hd1 | sort -h'
@@ -158,3 +162,14 @@ fi
 
 # enable completions
 autoload -U compinit && compinit
+
+# apparently has to come after initalizing the completion otherwise
+# there is a "complete:13: command not found: compdef" error
+if test kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+fi
+
+if test minikube &> /dev/null; then
+  source <(minikube completion zsh)
+fi
+
