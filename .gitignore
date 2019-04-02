@@ -8,6 +8,9 @@
 .config/bspwm
 
 # ignore atom config folders
-atom/*/ 
+atom/*/
 atom/nohup.out
 atom/projects.cson
+
+# ignore .uui fonts file
+fonts/.local/share/fonts/.uuid
