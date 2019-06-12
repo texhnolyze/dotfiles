@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+find_ignore_args = ARGV.map { |excluded| "! -iname '#{excluded.to_s}'" }.join(' ')
+files_to_remove = `find ./* -maxdepth 0 #{find_ignore_args} -exec echo \"'{}'\" \\; | tr '\n' ' '`
+remove_command = "rm -rv #{files_to_remove}"
+puts 'running: '
+puts remove_command
+puts `#{remove_command}`
