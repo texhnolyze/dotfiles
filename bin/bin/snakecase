@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+def rename_to_snake_case(file_paths)
+  file_paths.select { |p| File.exists?(p) }.each do |path|
+    file = Pathname.new(path)
+    file_extension = file.extname
+
+    new_file_path = "#{snake_case_path(file)}#{file_extension}"
+
+    unless file == Pathname.new(new_file_path)
+      puts "renaming #{file.basename} to #{new_file_path}"
+      file.rename(new_file_path)
+    end
+  end
+end
+
+def snake_case_path(file)
+    file_basename = file.basename('.*')
+    "#{file.dirname}/#{snake_case_name(file_basename)}"
+end
+
+def snake_case_name(filename)
+  filename
+    .to_s
+    .downcase
+    .gsub(/[-. ]+/, '_')
+    .gsub(/['"]/, '')
+end
+
+rename_to_snake_case(ARGV)
