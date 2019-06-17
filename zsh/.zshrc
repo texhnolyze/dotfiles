@@ -106,6 +106,9 @@ alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=f
 alias g='gradle'
 alias rspec='rspec --color --format documentation'
 alias phpunit='phpunit --colors --verbose'
+alias c='cargo'
+alias cr='cargo run'
+alias cb='cargo build'
 
 # pacman/yay aliases
 alias pacupg='yay'
