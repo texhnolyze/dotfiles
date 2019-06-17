@@ -167,11 +167,11 @@ autoload -U compinit && compinit
 
 # apparently has to come after initalizing the completion otherwise
 # there is a "complete:13: command not found: compdef" error
-if test kubectl &> /dev/null; then
+if type kubectl &> /dev/null; then
   source <(kubectl completion zsh)
 fi
 
-if test minikube &> /dev/null; then
+if type minikube &> /dev/null; then
   source <(minikube completion zsh)
 fi
 
