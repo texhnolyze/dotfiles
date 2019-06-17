@@ -20,7 +20,7 @@ bundle_antibody() {
   antibody update
 }
 
-if ! test antibody &> /dev/null; then
+if ! type antibody > /dev/null 2>&1; then
   install_antibody
 fi
 
