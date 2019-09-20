@@ -1,0 +1,15 @@
+#!/bin/bash
+# script to patch out finalizers of kubernetes components
+# to be able to remove them even in error cases
+
+set -Eeoux pipefail
+
+NAMESPACE="${1:-default}"
+CRD_TYPE="$2"
+SERVICE_INSTANCES="$(kubectl get -n $NAMESPACE $CRD_TYPE | awk '{if (NR!=1) {print $1}}')"
+
+echo $SERVICE_INSTANCES \
+  | xargs -n 1 kubectl patch \
+    -n $NAMESPACE \
+    $CRD_TYPE \
+    -p '{"metadata": {"finalizers": null}}'

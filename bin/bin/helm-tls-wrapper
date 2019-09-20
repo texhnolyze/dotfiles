@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+#
+# this script is a helpful wrapper for Helm CLI, when using TLS enabled Tiller
+# See https://github.com/helm/helm/blob/master/docs/tiller_ssl.md
+#
+# save this somewhere in your PATH (e.g. /usr/local/bin/)
+# as helm_tls_wrapper.sh
+# and add shell alias (so that shell-completion works without any additional changes)
+# alias helm=helm_tls_wrapper.sh
+#
+# save your TLS certificates in ${HELM_HOME}/tls/${K8S_CONTEXT}/
+# as ca.pem, cert.pem, and key.pem
+
+: ${HELM_HOME:=~/.helm}
+
+[[ "$(uname)" == "Darwin" ]] && grep="ggrep" || grep="grep"
+
+K8S_CONTEXT_ARG="$(echo "$@" | $grep -Po '(?<=--kube-context=)\S+')"
+
+for arg in $@; do
+  if [[ "$arg" == "--tls" ]]; then
+    if [[ -z "${K8S_CONTEXT_ARG}" ]]; then
+      K8S_CONTEXT="$($grep -Po '(?<=^current-context: ).*$' ~/.kube/config)"
+    else
+      K8S_CONTEXT="${K8S_CONTEXT_ARG}"
+    fi
+
+    export HELM_TLS_CA_CERT="${HELM_HOME}/tls/${K8S_CONTEXT}/ca.pem"
+    export HELM_TLS_CERT="${HELM_HOME}/tls/${K8S_CONTEXT}/cert.pem"
+    export HELM_TLS_KEY="${HELM_HOME}/tls/${K8S_CONTEXT}/key.pem"
+    export HELM_TLS_ENABLE="true"
+    #export HELM_TLS_VERIFY="true"
+
+    break
+  fi
+done
+
+helm $@
