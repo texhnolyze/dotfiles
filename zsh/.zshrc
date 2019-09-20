@@ -148,8 +148,10 @@ alias dirsizes='du -hd1 | sort -h'
 
 ###---- Extensions ----###
 # search history with fzf if installed, default otherwise
-if [[ -d '/usr/share/fzf' ]]; then
+if [[ -d /usr/share/fzf ]]; then
   source /usr/share/fzf/key-bindings.zsh
+elif [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
 else
   bindkey '^R' history-incremental-search-backward
 fi
@@ -189,4 +191,3 @@ fi
 if type minikube &> /dev/null; then
   source <(minikube completion zsh)
 fi
-
