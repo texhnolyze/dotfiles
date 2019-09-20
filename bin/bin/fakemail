@@ -1,0 +1,10 @@
+#!/bin/sh
+# run fakesmtp docker container on port 25
+
+docker run \
+  --rm \
+  --name fakesmtp-server \
+  -d \
+  -p 25:25 \
+  -v /tmp/fakemail:/var/mail \
+  ghusta/fakesmtp:2.0

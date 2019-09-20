@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+def run_sinatra(port: 8080, directory: '.', index: nil)
+  require 'sinatra'
+
+  set :port, port
+  set :public_folder, directory
+
+  if(index)
+    get '/' do
+      send_file File.join(settings.public_folder, index)
+    end
+  end
+end
+
+
+def parse_options(arguments)
+  parsed_args = {}
+  next_arg = ''
+
+  arguments.each do |arg|
+    case arg
+      when '-p', '--port' then next_arg = :port
+      when '-i', '--index' then next_arg = :index
+      when '-d', '--directory' then next_arg = :directory
+      else
+        parsed_args[next_arg] = arg if next_arg
+    end
+  end
+
+  parsed_args
+end
+
+options = parse_options(ARGV)
+ARGV = []
+run_sinatra(options)
