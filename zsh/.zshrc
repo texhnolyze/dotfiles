@@ -103,6 +103,7 @@ alias grbo='git rebase --onto'
 alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar) %C(white)%s%C(red) - %an%C(reset)%C(bold yellow)%d%C(reset)'"
 
 # coding aliases
+alias g='gradle'
 alias rspec='rspec --color --format documentation'
 alias phpunit='phpunit --colors --verbose'
 
@@ -114,6 +115,13 @@ alias pacquery='sudo pacman -Q'
 alias pacsearch='yay -Ss'
 alias orphans='sudo pacman -Rns $(pacman -Qtdq)'
 
+# apt aliases
+alias aptins='sudo apt install'
+alias aptsearch='apt search'
+alias aptdel='sudo apt purge'
+alias aptquery='apt show'
+alias aptupg='sudo apt update && sudo apt upgrade'
+
 # systemd aliases
 alias sstart='systemctl restart'
 alias sstop='systemctl stop'
@@ -122,9 +130,16 @@ alias senab='systemctl enable'
 alias sdisab='systemctl disable'
 alias journ='journalctl -xe -b'
 
+# docker aliases
+alias d='docker'
+alias pandoc='docker run --rm -u `id -u`:`id -g` -v `pwd`:/pandoc dalibo/pandocker'
+alias eisvogel='docker run --rm -v `pwd`:/pandoc dalibo/pandocker --pdf-engine=xelatex --template=eisvogel'
+
 # kubernetes aliases
 alias k='kubectl'
 alias mk='minikube'
+alias helm='helm-tls-wrapper'
+alias h='helm-tls-wrapper'
 
 # utitlity aliases
 alias slideshow='feh -rzZFD 5'
