@@ -182,6 +182,8 @@ else
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+# add custom completins folder to fpath
+fpath+=($HOME/.zsh_functions)
 # enable completions
 autoload -U compinit && compinit
 
