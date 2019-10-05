@@ -53,7 +53,10 @@ case $session in
     sh ~/dotfiles/bin/dwm-start;;
   kde               ) exec startkde;;
   xfce|xfce4        ) exec startxfce4;;
-  gnome|gnome3      ) exec gnome-session;;
+  gnome|gnome3      )
+    export XDG_SESSION_TYPE=x11
+    export GDK_BACKEND=x11
+    exec gnome-session;;
   # No known session, try to run it as command
   *                 ) exec $1;;
 esac
