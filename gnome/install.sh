@@ -1,2 +1,2 @@
 #!/bin/bash
-dconf load < ./keybindings.dconf.settings
+dconf load / < ./keybindings.dconf.settings
