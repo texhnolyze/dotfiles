@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=xmodmap ~/.Xmodmap
+Comment=Utility for modifying keymaps and pointer button mappings in X
+Exec=xmodmap $HOME/.Xmodmap
+Icon=utilities-terminal
+Terminal=true
+Type=Application
+Categories=System;ConsoleOnly;

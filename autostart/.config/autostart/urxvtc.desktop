@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=urxvtc -e tmux
+Comment=An unicode capable rxvt clone client for urxvtd
+Exec=urxvtc -e tmux
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=System;TerminalEmulator;
