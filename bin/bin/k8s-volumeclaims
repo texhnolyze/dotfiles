@@ -1,0 +1,9 @@
+#!/bin/bash
+# script to show all persistent volume claims of all k8s namespaces
+set -eEuo pipefail
+
+kubectl get pods --all-namespaces -o json \
+  | jq -c '.items[]
+  | {name: .metadata.name, namespace: .metadata.namespace, claimName: .spec
+  | select( has ("volumes") ).volumes[]
+  | select( has ("persistentVolumeClaim") ).persistentVolumeClaim.claimName }'
