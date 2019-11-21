@@ -139,7 +139,6 @@ alias pandoc='docker run --rm -u `id -u`:`id -g` -v `pwd`:/pandoc dalibo/pandock
 alias eisvogel='docker run --rm -v `pwd`:/pandoc dalibo/pandocker --pdf-engine=xelatex --template=eisvogel'
 
 # kubernetes aliases
-alias k='kubectl'
 alias mk='minikube'
 alias helm='helm-tls-wrapper'
 alias h='helm-tls-wrapper'
