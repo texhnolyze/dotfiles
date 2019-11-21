@@ -1,13 +1,13 @@
 #!/bin/bash
+set -eEou pipefail
 
 ### Set initial time of file
-LAST_ATIME=`stat -c %Z $1` 
+LAST_ATIME=`stat -c %Z $1`
 
-while true    
-do
+while true; do
    ATIME=`stat -c %Z $1`
 
-   if [[ "$ATIME" != "$LAST_ATIME" ]]; then    
+   if [[ "$ATIME" != "$LAST_ATIME" ]]; then
        echo "RUN COMMAND"
        LAST_ATIME=$ATIME
        eval "$2"
