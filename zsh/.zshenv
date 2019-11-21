@@ -11,6 +11,7 @@ path+=(
   $(ruby -e 'print Gem.user_dir')/bin
   $GOPATH/bin
   $HOME/.cargo/bin
+  $HOME/.fnm
   ./node_modules/.bin
 )
 

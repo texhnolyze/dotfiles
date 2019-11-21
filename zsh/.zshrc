@@ -149,6 +149,11 @@ alias dirsizes='du -hd1 | sort -h'
 
 
 ###---- Extensions ----###
+# fnm nodejs version manager setup
+if type fnm &> /dev/null; then
+  eval "$(fnm env --multi)"
+fi
+
 # search history with fzf if installed, default otherwise
 if [[ -d /usr/share/fzf ]]; then
   source /usr/share/fzf/key-bindings.zsh
