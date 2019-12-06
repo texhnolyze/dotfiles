@@ -23,6 +23,10 @@ URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: true
 URxvt.scrollTtyKeypress: true
 
+! disable Ctrl + Shift chars by isocode
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
 ! teh transparency stuff
 !URxvt.inheritPixmap: true
 !URxvt.tintColor: #6E6E6E
@@ -47,7 +51,7 @@ URxvt.font:xft:Hack-Regular:medium:size=14
 URxvt.boldFont:xft:Hack-Bold:medium:size=14
 
 !! urxvt pearl extensions settings
-URxvt.perl-ext-common: default,selection-to-clipboard,url-select,keyboard-select
+URxvt.perl-ext-common: default,selection-to-clipboard,url-select,keyboard-select,resize-font
 URxvt.url-select.launcher: firefox
 URxvt.url-select.underline: true
 URxvt.keysym.M-u: perl:url-select:select_next
