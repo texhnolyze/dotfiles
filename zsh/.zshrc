@@ -50,13 +50,8 @@ function git_current_branch() {
 }
 
 ###---- Command prompt ----###
-LPROMPT () {
-  PS1='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch)%{$reset_color%}]
+PROMPT='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch)%{$reset_color%}]
 └─── '
-}
-
-LPROMPT
-
 
 ###---- Color utils ----###
 export GREP_COLOR="1;31"
