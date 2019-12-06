@@ -1,12 +1,12 @@
-#!/bin/sh -e
+#!/bin/bash
+set -eEoux pipefail
 
-ORIGINAL_BRANCH="`git rev-parse --abbrev-ref HEAD`"
-BRANCH_TO_MERGE="$1"
+ORIGINAL_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
 git add --all
-git stash
+git diff --quiet || git stash; CHANGES_WERE_STASHED=true
 git checkout $BRANCH_TO_MERGE
 git pull --ff-only --rebase
 git checkout $ORIGINAL_BRANCH
 git merge $BRANCH_TO_MERGE --no-edit
-git stash apply
+[[ -z $CHANGES_WERE_STASHED ]] || git stash apply
