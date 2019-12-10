@@ -36,22 +36,6 @@ export KEYTIMEOUT=1
 
 autoload -U colors && colors
 
-function git_current_branch() {
-  local ref
-  ref=$(command git symbolic-ref --short --quiet HEAD 2> /dev/null)
-
-  local exit_code=$?
-  if [[ $exit_code != 0 ]]; then
-    [[ $exit_code == 128 ]] && return  # no git repo.
-    ref=$(command git rev-parse --abbrev-ref HEAD 2> /dev/null) || return
-  fi
-
-  echo "($ref)"
-}
-
-###---- Command prompt ----###
-PROMPT='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch)%{$reset_color%}]
-└─── '
 
 ###---- Color utils ----###
 export GREP_COLOR="1;31"
@@ -64,6 +48,17 @@ if [[ -f ~/.dir_colors ]]; then
 fi
 
 
+###---- Plugins ---###
+if type git &> /dev/null; then
+  source ~/.zsh_plugins/git.plugin.zsh
+fi
+
+
+###---- Command prompt ----###
+PROMPT='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch_for_prompt)%{$reset_color%}]
+└─── '
+
+
 ###---- Aliases ---###
 # generel aliases
 alias _='sudo'
@@ -73,29 +68,6 @@ alias ll='ls -lh'
 alias grep='grep --color=auto'
 alias pong='ping -c3 www.google.com'
 alias cpv='rsync -pogbr -hhh --backup-dir=/tmp/rsync -e /dev/null --progress'
-
-# git aliases
-alias gps='git push'
-alias gpso='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
-alias gpl='git pull --ff-only --rebase'
-alias gst='git status'
-alias gft='git fetch'
-alias gcm='git commit'
-alias gmg='git merge'
-alias ga='git add'
-alias gaa='git add -A'
-alias gap='git add -p'
-alias gau='git add -u'
-alias grm='git rm'
-alias gco='git checkout'
-alias gcb='git checkout -b '
-alias gcp='git cherry-pick'
-alias gsta='git stash'
-alias gstas='git stash save'
-alias gstaa='git stash apply'
-alias grb='git rebase'
-alias grbo='git rebase --onto'
-alias glg="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar) %C(white)%s%C(red) - %an%C(reset)%C(bold yellow)%d%C(reset)'"
 
 # coding aliases
 alias g='gradle'
