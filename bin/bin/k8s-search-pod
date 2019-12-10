@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eEou pipefail
+
+kubectl get pods --all-namespaces \
+  | fzf \
+  | awk '{print $1" "$2}' \
+  | xargs -n 2 bash -c 'kubectl -n $0 describe pod $1' \
+  | bat -l yaml --style=grid,numbers --color=always --paging=never \
+  | less -FR
