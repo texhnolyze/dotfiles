@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eEou pipefail
+
+kubectl get deployments --all-namespaces \
+  | fzf \
+  | awk '{print $1" "$2}' \
+  | xargs -n 2 bash -c 'kubectl -n $0 edit deployment $1'
