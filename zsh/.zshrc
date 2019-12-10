@@ -53,6 +53,11 @@ if type git &> /dev/null; then
   source ~/.zsh_plugins/git.plugin.zsh
 fi
 
+# fzf plugin is dependent on git plugin
+if type fzf &> /dev/null; then
+  source ~/.zsh_plugins/fzf.plugin.zsh
+fi
+
 
 ###---- Command prompt ----###
 PROMPT='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch_for_prompt)%{$reset_color%}]
