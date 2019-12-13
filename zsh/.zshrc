@@ -108,7 +108,7 @@ alias journ='journalctl -xe -b'
 # docker aliases
 alias d='docker'
 alias pandoc='docker run --rm -u `id -u`:`id -g` -v `pwd`:/pandoc dalibo/pandocker'
-alias eisvogel='docker run --rm -v `pwd`:/pandoc dalibo/pandocker --pdf-engine=xelatex --template=eisvogel'
+alias eisvogel='docker run --rm -v `pwd`:/pandoc dalibo/pandocker --pdf-engine=xelatex --template=eisvogel --listings --highlight-style kate'
 
 # kubernetes aliases
 alias mk='minikube'
