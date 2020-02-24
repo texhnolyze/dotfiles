@@ -1,0 +1,34 @@
+#!/bin/bash
+
+###---- Rsync Fast ----###
+# Rsync with optimized options for fast synchronization over the network
+# which however reduces security because of the limited ciphers used.
+# For this reason the script should only be used in secure internal networks
+#
+# See https://gist.github.com/KartikTalwar/4393116 and
+# https://bbs.archlinux.org/viewtopic.php?id=136713 for reference
+
+# Set the RSYNC_ARGS.
+UNAME="$(uname -s)"
+case "${UNAME}" in
+    Linux* | Darwin*)
+        RSYNC_ARGS="-aHAXxvP --numeric-ids -e"
+    ;;
+    # Windows filesystems do not support extended attributes (the "-X" option)
+    CYGWIN* | MINGW*)
+        RSYNC_ARGS="-aHAxvP --numeric-ids -e"
+    ;;
+    *)
+        echo "ERROR: Running on unknown system! Exiting!"
+        return 1
+    ;;
+esac
+
+# Set the SSH_ARGS
+SSH_ARGS="-T -c aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com -o Compression=no -x"
+
+# Get the rest of the args from the caller
+SOURCE=$1
+DESTINATION=$2
+
+rsync $RSYNC_ARGS "ssh $SSH_ARGS" $SOURCE $DESTINATION
