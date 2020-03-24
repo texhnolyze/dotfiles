@@ -32,14 +32,23 @@ function git_log_short_format() {
     --format="%C(bold blue)%h%C(reset) -%C(bold yellow)%d %C(white)%s%C(reset) - %C(red)%an%C(reset)"
 }
 
+function git_prune_branches() {
+  git remote prune origin
+  git branch -vv \
+    | grep ': gone]' \
+    | awk '{print $1}' \
+    | xargs git branch -d
+}
+
 # git aliases
 alias gps='git push'
 alias gpso='git push -u origin $(git_current_branch)'
 alias gpl='git pull --ff-only --rebase'
 alias gst='git status'
-alias gft='git fetch'
+alias gft='git fetch -p'
 alias gcm='git commit'
 alias gmg='git merge'
+alias gmgs='git merge --squash'
 alias ga='git add'
 alias gaa='git add -A'
 alias gap='git add -p'
@@ -54,3 +63,4 @@ alias gstaa='git stash apply'
 alias grb='git rebase'
 alias grbo='git rebase --onto'
 alias glg='git_log_format'
+alias gpr='git_prune_branches'
