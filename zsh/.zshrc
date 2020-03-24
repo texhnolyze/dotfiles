@@ -58,6 +58,10 @@ if type fzf &> /dev/null; then
   source ~/.zsh_plugins/fzf.plugin.zsh
 fi
 
+if type gradle &> /dev/null; then
+  source ~/.zsh_plugins/gradle.plugin.zsh
+fi
+
 
 ###---- Command prompt ----###
 PROMPT='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch_for_prompt)%{$reset_color%}]
@@ -77,7 +81,6 @@ export RSYNC_COMPRESSION_EXCLUDES="3fr/3g2/3gp/3gpp/7z/aac/ace/amr/apk/appx/appx
 alias rsync='rsync --skip-compress=$RSYNC_COMPRESSION_EXCLUDES'
 
 # coding aliases
-alias g='gradle'
 alias rspec='rspec --color --format documentation'
 alias phpunit='phpunit --colors --verbose'
 alias c='cargo'
