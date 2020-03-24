@@ -13,5 +13,6 @@ path+=(
   $HOME/.cargo/bin
   $HOME/.fnm
   ./node_modules/.bin
+  ${KREW_ROOT:-$HOME/.krew}/bin
 )
 
