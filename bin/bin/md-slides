@@ -1,0 +1,20 @@
+#!/bin/bash
+# generate reveal.js slideshow from markdown with pandoc
+set -eEoux pipefail
+
+INPUT_FILE="$1"
+OUTPUT_FILE="${2:-slides.html}"
+
+docker run \
+  --rm \
+  -u `id -u`:`id -g` \
+  -v `pwd`:/pandoc \
+  dalibo/pandocker \
+    -t revealjs \
+    --standalone \
+    --section-divs \
+    -V revealjs-url="https://revealjs.com" \
+    -V theme="black" \
+    -V transition="linear" \
+    $INPUT_FILE \
+    -o $OUTPUT_FILE
