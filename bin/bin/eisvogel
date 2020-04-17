@@ -1,0 +1,14 @@
+#!/bin/bash
+# generate pdf with pandoc/xelatex from markdown files with eisvogel
+# https://github.com/Wandmalfarbe/pandoc-latex-template
+set -eEoux pipefail
+
+docker run \
+  --rm \
+  -u `id -u`:`id -g` \
+  -v `pwd`:/pandoc \
+  dalibo/pandocker \
+    --pdf-engine=xelatex \
+    --template=eisvogel \
+    --listings \
+    --highlight-style kate

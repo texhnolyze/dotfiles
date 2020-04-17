@@ -110,12 +110,8 @@ alias senab='systemctl enable'
 alias sdisab='systemctl disable'
 alias journ='journalctl -xe -b'
 
-# docker aliases
+# docker/kubernetes aliases
 alias d='docker'
-alias pandoc='docker run --rm -u `id -u`:`id -g` -v `pwd`:/pandoc dalibo/pandocker'
-alias eisvogel='docker run --rm -v `pwd`:/pandoc dalibo/pandocker --pdf-engine=xelatex --template=eisvogel --listings --highlight-style kate'
-
-# kubernetes aliases
 alias mk='minikube'
 alias helm='helm-tls-wrapper'
 alias h='helm-tls-wrapper'
