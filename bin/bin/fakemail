@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 # run fakesmtp docker container on port 25
+set -eEoux pipefail
 
 docker run \
   --rm \
