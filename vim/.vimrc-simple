@@ -2,11 +2,25 @@
 syntax on
 scriptencoding utf-8
 set encoding=utf-8
-
+set fileencodings=utf-8
+set nocompatible                    " leave the old ways behind
+set runtimepath+=~/.vim             " use ~/.vim even on non-unix machines
 set mouse=a                         " enable mouse scrolling
+set mousehide                       " hide mouse while typing
 set ttyfast                         " don't lag...
 set cursorline                      " track position
 set nobackup                        " disable backup files (filename~)
+set noswapfile                      " disable swap files
+set undofile                        " maintain undo history
+set undolevels=100                  " maximum changes to be undone
+set history=256                     " remember 256 history entries
+set backupskip=/tmp/*               " no backups for /tmp files
+set wildignore=*.swp,*.swo,*.class  " ignore when expanding wildcards
+set clipboard+=unnamed              " yank and copy to X clipboard
+set autoread                        " automatically read changes to file from outside
+set endofline                       " add empty newlines at end of files
+set modeline                        " respect modelines in files
+set modelines=4
 
 "set wrap                            " wrap lines when textwidth is reached
 "set textwidth=80                    " set max textwidth
@@ -14,20 +28,30 @@ set showbreak=↪
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 
-set splitbelow                      " place new files below the current
-set showmatch                       " matching brackets & the like
-set matchtime=2                     " time to jump back from matching bracket
-set clipboard+=unnamed              " yank and copy to X clipboard
+" visuals
+set number                          " show line numbers
 set relativenumber                  " show relative line numbers for easy navigation
+set showmatch                       " matching brackets & the like
+set matchtime=5                     " time to jump back from matching bracket
+set ruler                           " show ruler
+set showtabline=2                   " always show tab panel
+set showcmd                         " show command typing
+set laststatus=2                    " always show statusline
+set scrolloff=3                     " number of lines to stop scrolling
+
 set whichwrap=b,s,h,l,<,>,[,]       " whichwrap -- left/right keys can travere up/down
 set linebreak                       " attempt to wrap lines cleanly
 set wildmenu                        " enchanced tab-completion shows all matching cmds in popup menu
 set wildmode=list:longest,full      " full completion options
-set autoread                        " automatically read changes to file from outside
+
+" color settings
+colorscheme darkblue
 
 " tabs and indenting
-set tabstop=4                       " tabs appear as n number of columns
-set shiftwidth=4                    " n columns for auto-indenting
+set tabstop=2                       " tabs appear as n number of columns
+set softtabstop=2
+set shiftwidth=2                    " n columns for auto-indenting
+set smarttab                        " smarter tab levels
 set expandtab                       " insert spaces instead of tabs
 set autoindent                      " auto indents next new line
 set smartindent                     " smart indent
@@ -38,180 +62,102 @@ set incsearch                       " increment search
 set ignorecase                      " ignore case when searching
 set smartcase                       " uppercase causes case-sensitive search
 
-" set dockerfile filetype for *.Dockerfile
-au BufRead,BufNewFile *.Dockerfile set filetype=dockerfile
+" use better vimgrep
+if executable('rg')
+  " Use rg(ripgrep)
+  set grepprg=rg\ --no-heading\ --vimgrep
+elseif executable('pt')
+  " Use pt(The Platinum Searcher)
+  set grepprg=pt\ --nocolor\ --nogroup\ --column
+elseif executable('ag')
+  " Use ag(The Silver Searcher)
+  set grepprg=ag\ --vimgrep
+elseif executable('ack')
+  set grepprg=ack\ -H\ --nocolor\ --nogroup
+endif
+" Set foramt for vimgrep
+set grepformat=%f:%l:%c:%m
 
+" statusline
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+set statusline=%#PmenuSel#
+set statusline+=\ %{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=\ %m
+set statusline+=\ %r
+set statusline+=%=
+set statusline+=%#Normal#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\ 
+
+"###---- filetype settings ---###"
 " change settings based on filetype
-autocmd Filetype ruby,eruby setlocal shiftwidth=2 tabstop=2
-autocmd Filetype php setlocal shiftwidth=2 tabstop=2
-autocmd Filetype lua setlocal shiftwidth=2 tabstop=2
-autocmd Filetype html setlocal shiftwidth=2 tabstop=2
-autocmd Filetype xml setlocal shiftwidth=2 tabstop=2
-autocmd Filetype yaml setlocal shiftwidth=2 tabstop=2
-autocmd Filetype sass setlocal shiftwidth=2 tabstop=2
+autocmd Filetype txt setlocal spell spelllang=en,de
 autocmd Filetype tex setlocal spell spelllang=en,de
 autocmd Filetype markdown setlocal spell spelllang=en,de
 
-" code completion
-set tags=~/.vim/tags/*
-set tags=.git/tags
-
-" status bar
-" replaced by lightline
-"set statusline=\ \%f%m%r%h%w\ ::\ %y\ [%{&ff}]\%=\ [%p%%:\ %l/%L]\
-set laststatus=2
-set cmdheight=1
-
-
 "###---- aliases and keymaps ---###"
+let mapleader=","                  " map <leader> key
+let g:mapleader=","
+if !has('nvim')
+  set esckeys                      " allow cursor keys in insert mode
+endif
+set backspace=indent,eol,start     " allow backspace in insert mode
+set timeoutlen=250                 " time to wait after ESC
+
+" <Esc> is too annoying to type
+inoremap jkj <Esc>
+" Screen sucks, redraw everything
+nnoremap <Leader>r :redraw!<CR>
+" Make Q meaningless (Q: Entering to Ex mode)
+nnoremap Q <nop>
+" Switching search-highlighting off until next search
+nnoremap <silent> <Leader>/ :nohlsearch<CR>
+
+" Quickly move current line above or below
+nnoremap <C-k><C-k> :<C-u>execute 'move -1-'. v:count1<CR>
+nnoremap <C-j><C-j> :<C-u>execute 'move +'. v:count1<CR>
+
+" Windows
 map <C-h> <C-w>h<C-w><Esc>
 map <C-k> <C-w>k<C-w><Esc>
 map <C-j> <C-w>j<C-w><Esc>
 map <C-l> <C-w>l<C-w><Esc>
 
-
-"###---- plugins ----###"
-" vundle settings
-set nocompatible                    " leave the old ways behind
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-
-" let vundle manage itself (required)
-Bundle 'gmarik/Vundle.vim'
-
-" base plugins
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'rking/ag.vim'
-Bundle 'scrooloose/nerdtree'
-"Bundle 'ervandew/supertab'
-Bundle 'Valloric/YouCompleteMe'
-
-" color and design plugins
-"Bundle 'altercation/vim-colors-solarized'
-"Bundle 'tomasr/molokai'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'itchyny/lightline.vim'
-
-" php plugins
-"Bundle 'joonty/vim-phpunitqf'
-"Bundle 'joonty/vim-phpqa'
-Bundle 'joonty/vdebug'
-Bundle 'xsbeats/vim-blade'
-
-" python plugins
-"Bundle 'joonty/vdebug'
-
-" ruby plugins
-"Bundle 'joonty/vdebug'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails'
-Bundle 'Keithbsmiley/rspec.vim'
-Bundle 'thoughtbot/vim-rspec'
-
-" rust plugins
-Bundle 'rust-lang/rust.vim'
-
-" clojure plugins
-Bundle 'guns/vim-clojure-static'
-Bundle 'tpope/vim-fireplace'
-
-" js plugins
-Bundle 'moll/vim-node'
-Bundle 'pangloss/vim-javascript'
-Bundle 'claco/jasmine.vim'
-Bundle 'burnettk/vim-angular'
-Bundle 'myhere/vim-nodejs-complete'
-Bundle 'marijnh/tern_for_vim'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'jelera/vim-javascript-syntax'
-
-" general coding plugins
-Bundle 'scrooloose/syntastic'
-
-" latex plugins
-Bundle 'LaTeX-Box-Team/LaTeX-Box'
-
-" ruby chef plugins
-Bundle 't9md/vim-chef'
-"Bundle 'vadv/vim-chef'
-
-" saltstack plugins
-Bundle 'saltstack/salt-vim'
-
-
-" vundle settings end
-call vundle#end()
-filetype plugin indent on
-
-
-"###---- plugin settings ----###"
-" YouCompleteMe
-let g:ycm_collect_identifiers_from_tags_files = 1
-
-" lightline
-let g:lightline = {
-      \ 'colorscheme': 'default',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'filename' ] ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'MyFugitive',
-      \   'readonly': 'MyReadonly',
-      \   'modified': 'MyModified',
-      \   'filename': 'MyFilename'
-      \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-      \ }
-
-function! MyModified()
-  if &filetype == "help"
-    return ""
-  elseif &modified
-    return "+"
-  elseif &modifiable
-    return ""
-  else
-    return ""
-  endif
-endfunction
-
-function! MyReadonly()
-  if &filetype == "help"
-    return ""
-  elseif &readonly
-    return "⭤"
-  else
-    return ""
-  endif
-endfunction
-
-function! MyFugitive()
-  if exists("*fugitive#head")
-    let _ = fugitive#head()
-    return strlen(_) ? '⭠ '._ : ''
-  endif
-  return ''
-endfunction
-
-function! MyFilename()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-       \ ('' != MyModified() ? ' ' . MyModified() : '')
-endfunction
-
-" vim-rspec
-map <Leader>a :call RunAllSpecs()<CR>
-map <Leader>c :call RunCurrentSpecFile()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-
-
-" color settings
-"set background=dark
-"set background=light
-"colorscheme solarized
-colorscheme Monokai
+" Tabs
+nnoremap <silent> <Tab><Tab> :tabnew<CR>
+nnoremap <silent> <Tab>q :tabclose<CR>
+nnoremap <silent> <Tab>o :tabonly<CR>
+nnoremap <silent> <Tab>s :tabs<CR>
+nnoremap <silent> <Tab>^ :tabfirst<CR>
+nnoremap <silent> <Tab>$ :tablast<CR>
+nnoremap <silent> <Tab>k :tabfirst<CR>
+nnoremap <silent> <Tab>j :tablast<CR>
+nnoremap <silent> <Tab>l :tabnext<CR>
+nnoremap <silent> <Tab>h :tabprevious<CR>
+nnoremap <silent> <Tab>n :tabnext<CR>
+nnoremap <silent> <Tab>p :tabprevious<CR>
+nnoremap <silent> <Tab><Right> :tabnext<CR>
+nnoremap <silent> <Tab><Left> :tabprevious<CR>
+nnoremap <silent> <Tab>1 :tabnext 1<CR>
+nnoremap <silent> <Tab>2 :tabnext 2<CR>
+nnoremap <silent> <Tab>3 :tabnext 3<CR>
+nnoremap <silent> <Tab>4 :tabnext 4<CR>
+nnoremap <silent> <Tab>5 :tabnext 5<CR>
+nnoremap <silent> <Tab>6 :tabnext 6<CR>
+nnoremap <silent> <Tab>7 :tabnext 7<CR>
+nnoremap <silent> <Tab>8 :tabnext 8<CR>
+nnoremap <silent> <Tab>9 :tabnext 9<CR>
