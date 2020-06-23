@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
 ATOM_CONFIG_DIR=~/dotfiles/atom
 
 # link atom config folder
-[[ ! -L ~/.atom ]] && ln -s "$ATOM_CONFIG_DIR" ~/.atom 
+[[ ! -L ~/.atom ]] && ln -s "$ATOM_CONFIG_DIR" ~/.atom
 
 # install all atom packages
 apm install $(xargs -a "$ATOM_CONFIG_DIR"/package-list)

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # generate pdf with pandoc/xelatex from markdown files with eisvogel
 # https://github.com/Wandmalfarbe/pandoc-latex-template
 set -eEoux pipefail

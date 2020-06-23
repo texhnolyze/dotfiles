@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 GIT_USER_NAME=`git config user.name`
 
@@ -12,4 +12,4 @@ git log \
     --author="$GIT_USER_NAME" \
     --reverse \
     --pretty=format:"%cd  %h  %s" \
-    --date=short 
+    --date=short

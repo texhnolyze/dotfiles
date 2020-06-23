@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # run http/s loggin server as docker container on port 8080/8443
 set -eEoux pipefail
 

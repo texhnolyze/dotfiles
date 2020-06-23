@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 curl -s \
   'https://www.archlinux.org/mirrorlist/?protocol=https&use_mirror_status=on' \

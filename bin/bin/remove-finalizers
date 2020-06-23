@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # script to patch out finalizers of kubernetes components
 # to be able to remove them even in error cases
 

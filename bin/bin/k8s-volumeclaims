@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # script to show all persistent volume claims of all k8s namespaces
 set -eEuo pipefail
 

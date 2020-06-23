@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 COLOR_SCRIPT_DIR="$HOME/scripts/colors"
 COLOR_SCRIPT="$(find "$COLOR_SCRIPT_DIR" -type f | shuf -n 1)"

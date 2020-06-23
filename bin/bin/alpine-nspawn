@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/usr/bin/env bash -e
 # Creates a systemd-nspawn container with Alpine
 
 MIRROR=http://nl.alpinelinux.org/alpine

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # generate reveal.js slideshow from markdown with pandoc
 set -eEoux pipefail
 

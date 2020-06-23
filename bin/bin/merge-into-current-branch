@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eEou pipefail
 
 ORIGINAL_BRANCH="$(git rev-parse --abbrev-ref HEAD)"

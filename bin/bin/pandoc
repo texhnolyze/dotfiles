@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # run pandoc in docker as it is a hassle to install
 set -eEoux pipefail
 

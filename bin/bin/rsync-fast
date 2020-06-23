@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ###---- Rsync Fast ----###
 # Rsync with optimized options for fast synchronization over the network

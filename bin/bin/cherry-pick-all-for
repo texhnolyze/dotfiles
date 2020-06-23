@@ -1,4 +1,4 @@
-#!/bin/sh -e 
+#!/usr/bin/env bash -e
 
 ALL_COMMITS="`git log \
     --format=oneline \
@@ -7,5 +7,5 @@ ALL_COMMITS="`git log \
     | grep -v Merge \
     | awk '{print $1}' \
     | xargs`"
-    
+
 git cherry-pick ${ALL_COMMITS}
