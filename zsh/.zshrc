@@ -114,6 +114,7 @@ fi
 
 # search history with fzf if installed, default otherwise
 if [[ -d /usr/share/fzf ]]; then
+  source /usr/share/fzf/completion.zsh
   source /usr/share/fzf/key-bindings.zsh
 elif [[ -f ~/.fzf.zsh ]]; then
   source ~/.fzf.zsh
