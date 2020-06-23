@@ -48,21 +48,6 @@ if [[ -f ~/.dir_colors ]]; then
 fi
 
 
-###---- Plugins ---###
-if type git &> /dev/null; then
-  source ~/.zsh_plugins/git.plugin.zsh
-fi
-
-# fzf plugin is dependent on git plugin
-if type fzf &> /dev/null; then
-  source ~/.zsh_plugins/fzf.plugin.zsh
-fi
-
-if type gradle &> /dev/null; then
-  source ~/.zsh_plugins/gradle.plugin.zsh
-fi
-
-
 ###---- Command prompt ----###
 PROMPT='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch_for_prompt)%{$reset_color%}]
 └─── '
@@ -152,11 +137,25 @@ if [[ -f ~/.zsh_plugins.sh ]]; then
   bindkey -M vicmd 'j' history-substring-search-down
 
   # zsh-aliases settings
-  export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
+  export ZSH_PLUGINS_ALIAS_TIPS_FORCE=0
   export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Use alias stupid: "
 else
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+###---- Plugins ---###
+if type git &> /dev/null; then
+  source ~/.zsh_plugins/git.plugin.zsh
+fi
+
+# fzf plugin is dependent on git plugin
+if type fzf &> /dev/null; then
+  source ~/.zsh_plugins/fzf.plugin.zsh
+fi
+
+if type gradle &> /dev/null; then
+  source ~/.zsh_plugins/gradle.plugin.zsh
 fi
 
 # add custom completins folder to fpath
