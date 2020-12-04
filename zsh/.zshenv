@@ -1,5 +1,4 @@
 export EDITOR="nvim"
-export TERM="rxvt-unicode-256color"
 export VAGRANT_DETECTED_OS="$(uname)"
 export SSH_ASKPASS=ssh-askpass
 export GOPATH="$HOME/coding/go"
