@@ -1,16 +1,10 @@
-# ignore all vim swap files
-*.swp
-
-# ignore .config folder by default
-.config/*
-
-.config/sxhkd
-.config/bspwm
+# ignore .git folder
+.git
 
 # ignore atom config folders
 atom/*/
 atom/nohup.out
 atom/projects.cson
 
-# ignore .uui fonts file
+# ignore .uuid fonts file
 fonts/.local/share/fonts/.uuid
