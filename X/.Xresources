@@ -51,14 +51,20 @@ URxvt.font:xft:Hack-Regular:medium:size=14
 URxvt.boldFont:xft:Hack-Bold:medium:size=14
 
 !! urxvt pearl extensions settings
-URxvt.perl-ext-common: default,selection-to-clipboard,url-select,keyboard-select,resize-font
-URxvt.url-select.launcher: firefox
+URxvt.perl-ext-common: default,selection-to-clipboard,url-select,keyboard-select,resize-font,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.matcher.rend.0: Uline Bold fg5
+URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 !URxvt.keysym.C-p: eval:paste_clipboard
 !URxvt.keysym.C-c: eval:selection_to_clipboard
+URxvt.keysym.C-minus: resize-font:smaller
+URxvt.keysym.C-plus: resize-font:bigger
+URxvt.keysym.C-equal: resize-font:reset
 
 !! Colours
 !#include ".colours/lich"
