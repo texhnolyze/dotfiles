@@ -1,0 +1,20 @@
+# set default options
+--smart-case
+--hidden
+--follow
+
+# ignore unsearchable files/directories
+--glob=!.git/*
+--glob=!package-lock.json
+--glob=!yarn.lock
+
+# configure colors
+--color=always
+
+# use consistent colors with fzf
+--colors=path:none
+--colors=path:fg:blue
+--colors=line:none
+--colors=line:fg:144
+--colors=match:none
+--colors=match:fg:108
