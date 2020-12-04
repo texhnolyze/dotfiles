@@ -166,6 +166,10 @@ if type gradle &> /dev/null; then
   source ~/.zsh_plugins/gradle.plugin.zsh
 fi
 
+if type dotnet &> /dev/null; then
+  source ~/.zsh_plugins/dotnet.plugin.zsh
+fi
+
 # add custom completins folder to fpath
 fpath+=($HOME/.zsh_functions)
 # enable completions
