@@ -33,6 +33,13 @@ setopt CORRECT_ALL
 bindkey -v
 # don't take 0.4s to vim modes
 export KEYTIMEOUT=1
+# copy to cliboard on vim mode yank
+function vi-yank-xclip {
+   zle vi-yank
+   echo "$CUTBUFFER" | xclip -i
+}
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
 
 autoload -U colors && colors
 
