@@ -104,6 +104,7 @@ alias journ='journalctl -xe -b'
 
 # docker/kubernetes aliases
 alias d='docker'
+alias dc='docker-compose'
 alias mk='minikube'
 alias helm='helm-tls-wrapper'
 alias h='helm-tls-wrapper'
