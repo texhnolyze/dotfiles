@@ -11,6 +11,7 @@ path+=(
   $GOPATH/bin
   $HOME/.cargo/bin
   $HOME/.fnm
+  $HOME/.yarn/bin
   ./node_modules/.bin
   ${KREW_ROOT:-$HOME/.krew}/bin
 )
