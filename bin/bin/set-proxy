@@ -1,0 +1,144 @@
+#!/usr/bin/env bash
+set -eEoux pipefail
+# setproxy
+# Sets the proxy settings for
+#    /etc/environment
+#    /etc/bash.bashrc
+#    /etc/zsh/zshenv
+#    /etc/apt/apt.conf
+#    the gnome proxy settings for all logged in users so running programs are notified of the change
+
+
+# author:staticd(Sachit) 2018
+# this software is released to the public domain
+
+setproxy_help() {
+    cat << EOS
+Usage: setproxy [server] [port]
+Sets the system proxy (apt and environment) and updates the proxy settings of running gui programs
+This program must be run as root
+
+With -h or --help prints this message
+With no arguments it disables proxying
+With two arguments it sets the proxy and port
+
+examples:
+  setproxy 192.168.0.1 3128        # sets the proxy
+  setproxy proxy.company.com 8080  # sets the proxy
+  setproxy                         # disables the proxy
+EOS
+}
+
+
+#EDIT this if you don't have the default session manager for example if you have a KDE or LXDE desktop
+SESSION_MANAGER=gnome-session-b
+
+unset_proxy() {
+    #this function clears the proxy settings
+    #delete any lines containing "proxy="
+    sed -i "/proxy\=/d" /etc/environment
+    #delete old proxy setting lines and unset any outdated environment variables inherited at login time
+    sed -i "/proxy\=/d" /etc/bash.bashrc
+    echo "unset http_proxy" >> /etc/bash.bashrc
+    echo "unset https_proxy" >> /etc/bash.bashrc
+    echo "unset no_proxy" >> /etc/bash.bashrc
+
+    sed -i "/proxy\=/d"         /etc/zsh/zshenv
+    echo "unset http_proxy" >> /etc/zsh/zshenv
+    echo "unset https_proxy" >> /etc/zsh/zshenv
+    echo "unset no_proxy" >> /etc/zsh/zshenv
+    #delete any lines containing "Proxy"
+    sed -i "/Proxy/d" /etc/apt/apt.conf.d/100proxy
+    # ask the already running programs of logged in users to update their settings
+    # programs load the get the settings in /etc/environment only when they just start
+    for user in $(users | tr ' ' '\n' | sort --unique) ; do
+        unset_proxy_logged_in_user "$user"
+    done
+}
+
+unset_proxy_logged_in_user() {
+    USER=$1
+    su "$USER" << EOS
+    export $(cat /proc/$(pgrep "$SESSION_MANAGER" -u "$USER")/environ|egrep -z '^DBUS_SESSION_BUS_ADDRESS=')
+    gsettings set org.gnome.system.proxy mode 'none'
+EOS
+}
+
+set_proxy() {
+    # this function sets the proxy settings for apt and the environment
+    # first argument should be server, second is the port
+    unset_proxy
+    proxy_url='http://'"$1":"$2"
+    echo $proxy_url
+    # set the default environment
+    echo "http_proxy=\"$proxy_url\"" >> /etc/environment
+    echo "https_proxy=\"$proxy_url\"" >> /etc/environment
+    echo "no_proxy=localhost,127.0.0.0/8,10.0.0.0/8,192.168.0.0/16,172.16.0.0/12,::1" >> /etc/environment
+    # set the proxy for all new terminals that are opened. (without this, new terminals that are opened may continue to inherit outdated environment variables from the state of /etc/environment file at login time)
+    echo "export http_proxy=\"$proxy_url\"" >> /etc/bash.bashrc
+    echo "export https_proxy=\"$proxy_url\"">> /etc/bash.bashrc
+    echo "export no_proxy=localhost,127.0.0.0/8,10.0.0.0/8,192.168.0.0/16,172.16.0.0/12,::1" >> /etc/bash.bashrc
+    echo "export http_proxy=\"$proxy_url\"" >> /etc/zsh/zshenv
+    echo "export https_proxy=\"$proxy_url\"" >> /etc/zsh/zshenv
+    echo "export no_proxy=localhost,127.0.0.0/8,10.0.0.0/8,192.168.0.0/16,172.16.0.0/12,::1" >> /etc/zsh/zshenv
+
+    # set the apt proxy
+    echo "Acquire::Http::Proxy \"$proxy_url\";" >> /etc/apt/apt.conf.d/100proxy
+    echo "Acquire::Https::Proxy \"$proxy_url\";" >> /etc/apt/apt.conf.d/100proxy
+    # ask the already running programs of logged in users to update their settings
+    # programs load the settings in /etc/environment only when they just start
+    for user in $(users | tr ' ' '\n' | sort --unique) ; do
+        set_proxy_logged_in_user "$user" $1 $2
+    done
+}
+
+set_proxy_logged_in_user() {
+    USER=$1
+    SERVER=$2
+    PORT=$3
+    su "$USER" << EOS
+    export $(cat /proc/$(pgrep "$SESSION_MANAGER" -u "$USER")/environ|egrep -z '^DBUS_SESSION_BUS_ADDRESS=')
+    gsettings set org.gnome.system.proxy mode 'manual'
+    gsettings set org.gnome.system.proxy.http host $SERVER
+    gsettings set org.gnome.system.proxy.http port $PORT
+    gsettings set org.gnome.system.proxy.https host $SERVER
+    gsettings set org.gnome.system.proxy.https port $PORT
+    gsettings set org.gnome.system.proxy ignore-hosts "['localhost', '127.0.0.0/8', '10.0.0.0/8', '192.168.0.0/16', '172.16.0.0/12', '::1']"
+EOS
+}
+
+# print help message
+if [ $# -eq 1 ] ; then
+    case $1 in
+    "-h" | "--help" )
+        setproxy_help
+        exit
+        ;;
+    *)
+        echo "Invalid argument" $1
+        echo "call " $(basename $0) "-h for help"
+        exit 1
+        ;;
+    esac
+fi
+
+# check if running as root
+if ! [ $(id -u) = 0 ]; then
+   echo "This script needs to be run as root"
+   exit 1
+fi
+
+if [ $# -eq 0 ] ; then
+    unset_proxy
+    exit
+fi
+
+if [ $# -eq 2 ] ; then
+    set_proxy $1 $2
+    exit
+fi
+
+# If the execution reached here it was called with too many arguments
+echo "too many arguments"
+echo "call " $(basename $0) "-h for help"
+exit 1
