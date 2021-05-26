@@ -146,7 +146,7 @@ if [[ -f ~/.zsh_plugins.sh ]]; then
   bindkey -M vicmd 'j' history-substring-search-down
 
   # zsh-aliases settings
-  export ZSH_PLUGINS_ALIAS_TIPS_FORCE=0
+  export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
   export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Use alias stupid: "
 else
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
