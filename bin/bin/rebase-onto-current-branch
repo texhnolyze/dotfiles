@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -eEou pipefail
+
+ORIGINAL_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+BRANCH_TO_REBASE="$1"
+CHANGES_WERE_STASHED=false
+
+git add --all
+
+if ! git diff --cached --quiet; then
+  git stash
+  CHANGES_WERE_STASHED=true
+fi
+
+git checkout $BRANCH_TO_REBASE
+git pull --ff-only --rebase
+git checkout $ORIGINAL_BRANCH
+git rebase $BRANCH_TO_REBASE
+[ $CHANGES_WERE_STASHED = true ] && \
+  echo "Previous changes were stashed, run git stash apply after rebase"
