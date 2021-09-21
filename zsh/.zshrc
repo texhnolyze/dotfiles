@@ -79,21 +79,6 @@ alias c='cargo'
 alias cr='cargo run'
 alias cb='cargo build'
 
-# pacman/yay aliases
-alias pacupg='yay'
-alias pacins='yay -S'
-alias pacdel='yay -Rns'
-alias pacquery='sudo pacman -Q'
-alias pacsearch='yay -Ss'
-alias orphans='sudo pacman -Rns $(pacman -Qtdq)'
-
-# apt aliases
-alias aptins='sudo apt install'
-alias aptsearch='apt search'
-alias aptdel='sudo apt purge'
-alias aptquery='apt show'
-alias aptupg='sudo apt update && sudo apt upgrade'
-
 # systemd aliases
 alias sstart='systemctl restart'
 alias sstop='systemctl stop'
@@ -154,6 +139,8 @@ else
 fi
 
 ###---- Plugins ---###
+source ~/.zsh_plugins/package-manager.plugin.zsh
+
 if type git &> /dev/null; then
   source ~/.zsh_plugins/git.plugin.zsh
 fi
