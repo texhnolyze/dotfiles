@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -eEuo pipefail
+# generate pdf with pandoc/xelatex from markdown files with
+# pandoc-letter
+# https://github.com/aaronwolen/pandoc-letter
+
+docker run --rm \
+  -u `id -u`:`id -g` \
+  -v `pwd`:/pandoc \
+  dalibo/pandocker \
+    --from=markdown \
+    --pdf-engine=xelatex \
+    --template=letter \
+    -o "${1%.*}.pdf" \
+    "$1"

@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
+set -eEuo pipefail
 # run pandoc in docker as it is a hassle to install
-set -eEoux pipefail
 
-docker run \
-  --rm \
+docker run --rm \
   -u `id -u`:`id -g` \
   -v `pwd`:/pandoc \
   dalibo/pandocker
