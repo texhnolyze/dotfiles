@@ -99,6 +99,14 @@ alias mk='minikube'
 alias helm='helm-tls-wrapper'
 alias h='helm-tls-wrapper'
 
+# vagrant aliases
+alias v='vagrant'
+alias vu='vagrant up'
+alias vp='vagrant provision'
+alias vs='vagrant ssh'
+alias vd='vagrant destroy'
+alias vn='vagrant destroy && vagrant up'
+
 # utitlity aliases
 alias slideshow='feh -rzZFD 5'
 alias dirsizes='du -hd1 | sort -h'
