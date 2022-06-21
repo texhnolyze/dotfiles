@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -eEuo pipefail
+
+printers=(
+  "d001_sw"
+  "d116_sw"
+  "d122_fa4"
+  "f015_sw"
+  "g235_hp"
+)
+printer_descriptions=(
+  "Room: D-001, black/white, duplex A4-recycling paper (3ct/page)"
+  "Room: D-116, black/white, duplex A4-recycling paper (3ct/page)"
+  "Room: D-122, colour, duplex A4-recycling paper (15ct/page)"
+  "Room: F-015 Bit-Bots, black/white, duplex A4-recycling paper (3ct/page)"
+  "Room: G-235, black/white, duplex A4-recycling paper (3ct/page), often turned off"
+)
+
+function select_printer() {
+  length=${#printers[@]}
+  for (( index = 0; index < length; index++ )); do
+    zenity_options+=("FALSE" "${printers[index]}" "${printer_descriptions[index]}")
+  done
+
+  zenity \
+    --list \
+    --radiolist \
+    --title "Select where to print" \
+    --width 650 \
+    --height 250 \
+    --column "Select" \
+    --column "Printer" \
+    --column "Description" \
+    "${zenity_options[@]}"
+  }
+
+file="$1"
+default_printing_options="-o sides=one-sided"
+user_printing_options="${@:2}"
+printing_options="${user_printing_options:-$default_printing_options}"
+selected_printer="$(select_printer)"
+
+read -p "Are you sure you want to print <$file> on <$selected_printer> with options '$printing_options'? (y/n) " answer
+if [[ $answer == 'y' ]] ; then
+  echo 'Ok, printing'
+  cat $file | ssh uni lpr -P$selected_printer $printing_options
+else
+  echo 'Ok, not printing'
+fi
