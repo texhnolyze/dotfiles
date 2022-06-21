@@ -110,7 +110,12 @@ alias vn='vagrant destroy && vagrant up'
 # utitlity aliases
 alias slideshow='feh -rzZFD 5'
 alias dirsizes='du -hd1 | sort -h'
-
+alias mpv='mpv --save-position-on-quit'
+alias t='trans'
+alias ted='trans -t de'
+alias tde='trans -l de'
+alias dl='aria2c -c -j 5 -x 10 -s 10 -k 1M'
+alias ytdl='yt-dlp --downloader aria2c --downloader-args aria2c:"-c -j 5 -x 10 -s 10 -k 1M"'
 
 ###---- Extensions ----###
 # fnm nodejs version manager setup
