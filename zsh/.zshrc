@@ -54,9 +54,12 @@ if [[ -f ~/.dir_colors ]]; then
   eval $(dircolors -b ~/.dir_colors)
 fi
 
+function in_container() {
+  [[ -n "$DOCKER" ]] && echo "docker "
+}
 
 ###---- Command prompt ----###
-PROMPT='┌─[%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch_for_prompt)%{$reset_color%}]
+PROMPT='┌─[%{$fg[green]%}$(in_container)%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch_for_prompt)%{$reset_color%}]
 └─── '
 
 
