@@ -181,13 +181,11 @@ if type dotnet &> /dev/null; then
   source ~/.zsh_plugins/dotnet.plugin.zsh
 fi
 
-
-# apparently has to come after initalizing the completion otherwise
-# there is a "complete:13: command not found: compdef" error
-if type kubectl &> /dev/null; then
-  source <(kubectl completion zsh)
 fi
 
-if type minikube &> /dev/null; then
-  source <(minikube completion zsh)
-fi
+additional_completions=( kind k3d kyma )
+for tool in "${additional_completions[@]}"; do
+  if type $tool &> /dev/null; then
+    source <($tool completion zsh)
+  fi
+done
