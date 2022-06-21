@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -eEuo pipefail
+
+VERSION="${1:-latest}"
+IMAGE="ubuntu:$VERSION"
+CONTAINER_NAME="ubuntu-$VERSION-test"
+
+CONTAINER_LIST="$(docker container list --all --format '{{ .Names }}')"
+
+if echo $CONTAINER_LIST | grep $CONTAINER_NAME; then
+  echo "Container $CONTAINER_NAME already exists. Starting ... "
+  docker start -ia $CONTAINER_NAME
+else
+  echo "Container $CONTAINER_NAME does not exist. Creating ... "
+  docker pull $IMAGE
+  docker run -it \
+    --name "$CONTAINER_NAME" \
+    $IMAGE \
+    /bin/bash
+fi
