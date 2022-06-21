@@ -166,11 +166,11 @@ source ~/.zsh_plugins/package-manager.plugin.zsh
 
 if type git &> /dev/null; then
   source ~/.zsh_plugins/git.plugin.zsh
-fi
 
-# fzf plugin is dependent on git plugin
-if type fzf &> /dev/null; then
-  source ~/.zsh_plugins/fzf.plugin.zsh
+  # fzf plugin is dependent on git plugin
+  if type fzf &> /dev/null; then
+    source ~/.zsh_plugins/fzf.plugin.zsh
+  fi
 fi
 
 if type gradle &> /dev/null; then
