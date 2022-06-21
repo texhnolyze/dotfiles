@@ -120,7 +120,7 @@ alias ytdl='yt-dlp --downloader aria2c --downloader-args aria2c:"-c -j 5 -x 10 -
 ###---- Extensions ----###
 # fnm nodejs version manager setup
 if type fnm &> /dev/null; then
-  eval "$(fnm env --multi)"
+  eval "$(fnm env)"
 fi
 
 # search history with fzf if installed, default otherwise
