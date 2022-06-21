@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -eEuo pipefail
+
+FILE="$1"
+
+cat $FILE \
+  | iconv -f UTF-16 -t UTF-8 \
+  | sed 's/[[:space:]]/ /g' \
+  | sed 's/\x0//g' \
+  | sed 's/\r\n$/\n/g' \
+  | sed 's/\s$//g' \
+  | tee fixed.ics
