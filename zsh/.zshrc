@@ -117,6 +117,24 @@ alias tde='trans -l de'
 alias dl='aria2c -c -j 5 -x 10 -s 10 -k 1M'
 alias ytdl='yt-dlp --downloader aria2c --downloader-args aria2c:"-c -j 5 -x 10 -s 10 -k 1M"'
 
+# ros2 aliases
+alias rr='ros2 run'
+alias rl='ros2 launch'
+
+alias rte='ros2 topic echo'
+alias rtl='ros2 topic list'
+alias rth='ros2 topic hz'
+alias rtp='ros2 topic pub'
+
+alias rpl='ros2 param list'
+alias rpg='ros2 param get'
+
+alias cba='colcon build --symlink-install'
+alias cbn='colcon build --symlink-install --packages-select'
+alias cb='colcon build --symlink-install --packages-up-to'
+alias cc='colcon clean packages --packages-select'
+alias cca='colcon clean packages'
+
 ###---- Extensions ----###
 # fnm nodejs version manager setup
 if type fnm &> /dev/null; then
@@ -181,6 +199,11 @@ if type dotnet &> /dev/null; then
   source ~/.zsh_plugins/dotnet.plugin.zsh
 fi
 
+if [[ -f /opt/ros/rolling/setup.zsh ]]; then
+  source /opt/ros/rolling/setup.zsh
+  source $HOME/ros2-ws/install/setup.zsh
+  eval "$(register-python-argcomplete3 ros2)"
+  eval "$(register-python-argcomplete3 colcon)"
 fi
 
 additional_completions=( kind k3d kyma )
