@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -eEuo pipefail
+
+git rebase \
+  --committer-date-is-author-date \
+  --exec 'git commit --amend --no-edit --reset-author' \
+  $@
