@@ -156,6 +156,11 @@ else
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+# add custom completins folder to fpath
+fpath+=($HOME/.zsh_functions)
+# enable completions
+autoload -U compinit && compinit
+
 ###---- Plugins ---###
 source ~/.zsh_plugins/package-manager.plugin.zsh
 
@@ -176,10 +181,6 @@ if type dotnet &> /dev/null; then
   source ~/.zsh_plugins/dotnet.plugin.zsh
 fi
 
-# add custom completins folder to fpath
-fpath+=($HOME/.zsh_functions)
-# enable completions
-autoload -U compinit && compinit
 
 # apparently has to come after initalizing the completion otherwise
 # there is a "complete:13: command not found: compdef" error
