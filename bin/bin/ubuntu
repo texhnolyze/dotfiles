@@ -7,7 +7,7 @@ CONTAINER_NAME="ubuntu-$VERSION-test"
 
 CONTAINER_LIST="$(docker container list --all --format '{{ .Names }}')"
 
-if echo $CONTAINER_LIST | grep $CONTAINER_NAME; then
+if echo $CONTAINER_LIST | grep $CONTAINER_NAME &> /dev/null; then
   echo "Container $CONTAINER_NAME already exists. Starting ... "
   docker start -ia $CONTAINER_NAME
 else
