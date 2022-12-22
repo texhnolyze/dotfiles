@@ -44,6 +44,7 @@ function git_prune_branches() {
 alias gps='git push'
 alias gpso='git push -u origin $(git_current_branch)'
 alias gpl='git pull --ff-only --rebase'
+alias gplr='git pull --rebase'
 alias gst='git status'
 alias gft='git fetch -p'
 alias gcm='git commit'
