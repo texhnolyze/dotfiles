@@ -142,7 +142,7 @@ alias cca='colcon clean packages'
 ###---- Extensions ----###
 # fnm nodejs version manager setup
 if type fnm &> /dev/null; then
-  eval "$(fnm env)"
+  eval "$(fnm env --use-on-cd)"
 fi
 
 # search history with fzf if installed, default otherwise
