@@ -5,9 +5,9 @@ URxvt.cursorBlink: true
 URxvt.geometry: 80x22
 URxvt.transparent: 0
 URxvt.urgentOnBell: true
-URxvt.letterSpace: 0
-URxvt.lineSpace: 1
 URxvt.internalBorder: 4
+URxvt.lineSpace: 1
+URxvt.letterSpace: 0
 
 ! borderless and no scrollbar
 URxvt.scrollBar_right: false
@@ -52,7 +52,6 @@ URxvt.boldFont:xft:Hack-Bold:medium:size=14
 
 !! urxvt pearl extensions settings
 URxvt.perl-ext-common: default,selection-to-clipboard,url-select,keyboard-select,resize-font,matcher
-URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.matcher.rend.0: Uline Bold fg5
 URxvt.url-select.launcher: /usr/bin/xdg-open
