@@ -45,7 +45,7 @@ autoload -U colors && colors
 
 
 ###---- Color utils ----###
-export GREP_COLOR="1;31"
+export GREP_COLOR="mt=1;31"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 
