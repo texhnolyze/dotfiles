@@ -199,11 +199,8 @@ if type dotnet &> /dev/null; then
   source ~/.zsh_plugins/dotnet.plugin.zsh
 fi
 
-if [[ -f /opt/ros/rolling/setup.zsh ]]; then
-  source /opt/ros/rolling/setup.zsh
-  source $HOME/ros2-ws/install/setup.zsh
-  eval "$(register-python-argcomplete3 ros2)"
-  eval "$(register-python-argcomplete3 colcon)"
+if [[ -d /opt/ros ]]; then
+  source ~/.zsh_plugins/ros.plugin.zsh
 fi
 
 additional_completions=( kind k3d kyma )
