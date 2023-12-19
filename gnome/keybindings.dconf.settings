@@ -1,3 +1,33 @@
+[org/gnome/desktop/input-sources]
+sources=[('xkb', 'us'), ('xkb', 'de')]
+xkb-options=['caps:escape']
+
+[org/gnome/settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+home=['<Super>e']
+www=['<Super>w']
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Shift><Alt>Return'
+command='alacritty'
+name='alacritty'
+
+# [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1]
+# binding='<Super>l'
+# command='slock'
+# name='slock'
+
+[org/gnome/mutter]
+dynamic-workspaces=false
+workspaces-only-on-primary=false
+
+[org/gnome/mutter/keybindings]
+toggle-tiled-left=['<Super>Left', '<Shift><Alt>h']
+toggle-tiled-right=['<Super>Right', '<Shift><Alt>l']
+
+[org/gnome/desktop/wm/preferences]
+num-workspaces=6
+
 [org/gnome/desktop/wm/keybindings]
 close=['<Shift><Alt>c']
 cycle-windows=['<Alt>j']
@@ -26,17 +56,3 @@ switch-windows-backward=['<Shift><Alt>Tab']
 toggle-fullscreen=['<Alt>f']
 toggle-maximized=['<Alt>m']
 unmaximize=['<Super>Down', '<Shift><Alt>j']
-
-[org/gnome/mutter/keybindings]
-toggle-tiled-left=['<Super>Left', '<Shift><Alt>h']
-toggle-tiled-right=['<Super>Right', '<Shift><Alt>l']
-
-[org/gnome/settings-daemon/plugins/media-keys]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
-home=['<Super>e']
-www=['<Super>w']
-
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
-binding='<Shift><Alt>Return'
-command='urxvtc'
-name='urxtvc'
