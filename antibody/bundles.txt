@@ -1,4 +1,3 @@
-rupa/z
 djui/alias-tips
 rust-lang/zsh-config
 soimort/translate-shell branch:develop

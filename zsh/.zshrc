@@ -213,3 +213,7 @@ for tool in "${additional_completions[@]}"; do
     source <($tool completion zsh)
   fi
 done
+
+if type zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
