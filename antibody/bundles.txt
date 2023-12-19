@@ -1,5 +1,6 @@
 djui/alias-tips
 rust-lang/zsh-config
+jeffreytse/zsh-vi-mode
 soimort/translate-shell branch:develop
 texhnolyze/zsh-vimto
 ahmetb/kubectl-aliases path:.kubectl_aliases
