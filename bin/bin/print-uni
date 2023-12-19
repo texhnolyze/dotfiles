@@ -40,8 +40,8 @@ user_printing_options="${@:2}"
 printing_options="${user_printing_options:-$default_printing_options}"
 selected_printer="$(select_printer)"
 
-read -p "Are you sure you want to print <$file> on <$selected_printer> with options '$printing_options'? (y/n) " answer
-if [[ $answer == 'y' ]] ; then
+read -p "Are you sure you want to print <$file> on <$selected_printer> with options '$printing_options'? (Y/n) " answer
+if [[ ! $answer =~ 'n|N' ]] ; then
   echo 'Ok, printing'
   cat $file | ssh uni lpr -P$selected_printer $printing_options
 else
