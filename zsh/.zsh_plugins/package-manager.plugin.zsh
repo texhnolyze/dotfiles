@@ -10,10 +10,11 @@ arch_linux_aliases() {
     alias pacupg='sudo pacman -Syu'
     alias pacins='sudo pacman -S'
     alias pacdel='sudo pacman -Rns'
-    alias pacsearch='sudo pacman -Ss'
+    alias pacsearch='pacman -Ss'
   fi
 
   alias pacquery='sudo pacman -Q'
+  alias installed='pacman -Qs'
   alias orphans='sudo pacman -Rns $(pacman -Qtdq)'
 }
 
@@ -23,12 +24,14 @@ debian_based_aliases() {
   alias pacsearch='apt search'
   alias pacdel='sudo apt purge'
   alias pacquery='apt show'
+  alias installed='apt list --installed | grep -iE'
+  alias orphans='sudo apt autoremove'
 }
 
-if [[ $RELEASE_DISTRIBUTOR =~ "Arch" ]]; then
+if [[ "$RELEASE_DISTRIBUTOR" =~ "Arch" ]]; then
   arch_linux_aliases
 fi
 
-if [[ $RELEASE_DISTRIBUTOR =~ "Ubuntu|Debian" ]]; then
+if [[ "$RELEASE_DISTRIBUTOR" =~ "Ubuntu|Debian" ]]; then
   debian_based_aliases
 fi
