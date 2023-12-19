@@ -4,8 +4,9 @@ set -eEuo pipefail
 # https://github.com/Wandmalfarbe/pandoc-latex-template
 
 docker run --rm \
-  -u `id -u`:`id -g` \
-  -v `pwd`:/pandoc \
+  -u "$(id -u):$(id -g)" \
+  -v "$PWD:/pandoc" \
+  -v ~/documents/background.pdf:/background.pdf:ro \
   dalibo/pandocker \
     --from=markdown \
     --pdf-engine=xelatex \
