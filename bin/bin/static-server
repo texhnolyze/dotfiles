@@ -1,15 +1,13 @@
 #!/usr/bin/env ruby
 
-def run_sinatra(port: 8080, directory: '.', index: nil)
+def run_sinatra(port: 8080, directory: '.', index: 'index.html')
   require 'sinatra'
 
   set :port, port
   set :public_folder, directory
 
-  if(index)
-    get '/' do
-      send_file File.join(settings.public_folder, index)
-    end
+  get '/' do
+    send_file File.join(settings.public_folder, index)
   end
 end
 
@@ -32,5 +30,4 @@ def parse_options(arguments)
 end
 
 options = parse_options(ARGV)
-ARGV = []
-run_sinatra(options)
+run_sinatra(**options)

@@ -3,17 +3,21 @@
 require 'pathname'
 
 def rename_to_snake_case(file_paths)
-  file_paths.select { |p| File.exists?(p) }.each do |path|
+  existing_files(file_paths).each do |path|
     file = Pathname.new(path)
-    file_extension = file.extname
 
-    new_file_path = "#{snake_case_path(file)}#{file_extension}"
+    new_file_path = "#{snake_case_path(file)}#{file.extname}"
+    new_file = Pathname.new(new_file_path)
 
-    unless file == Pathname.new(new_file_path)
+    unless file == new_file
       puts "renaming #{file.basename} to #{new_file_path}"
       file.rename(new_file_path)
     end
   end
+end
+
+def existing_files(file_paths)
+  file_paths.select { |p| File.exists?(p) }
 end
 
 def snake_case_path(file)
