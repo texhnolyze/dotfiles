@@ -17,6 +17,8 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 # General python settings
 export PYTHONIOENCODING=utf8
 export PYTHONWARNINGS=ignore:::setuptools.command.install,ignore:::setuptools.command.easy_install,ignore:::pkg_resources
+# disable the default virtualenv prompt change
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 typeset -U path
 path+=(

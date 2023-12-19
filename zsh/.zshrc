@@ -58,8 +58,21 @@ function in_container() {
   [[ -n "$DOCKER" ]] && echo "docker "
 }
 
+function in_virtualenv() {
+    # Get Virtual Env
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        # Strip out the path and just leave the env name
+        local venv="${VIRTUAL_ENV##*/}"
+    fi
+    [[ -n "$venv" ]] && echo " $venv"
+
+    if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+      echo " $CONDA_DEFAULT_ENV"
+    fi
+}
+
 ###---- Command prompt ----###
-PROMPT='┌─[%{$fg[green]%}$(in_container)%{$fg[red]%}%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch_for_prompt)%{$reset_color%}]
+PROMPT='┌─[%{$fg[green]%}$(in_container)%{$fg[red]%}%m%{$fg_bold[white]%}$(in_virtualenv)%}%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch_for_prompt)%{$reset_color%}]
 └─── '
 
 
@@ -87,6 +100,12 @@ alias phpunit='phpunit --colors --verbose'
 alias c='cargo'
 alias cr='cargo run'
 alias cb='cargo build'
+
+function venv() {
+  venv_dirs="$(find ~/.virtualenvs/* -maxdepth 0 -type d,l -print)"
+  chosen_venv="$(echo "$venv_dirs" | fzf)"
+  source "$chosen_venv/bin/activate"
+}
 
 # systemd aliases
 alias sstart='systemctl restart'
