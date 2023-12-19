@@ -8,11 +8,15 @@ export ROS_WORKSPACE="$COLCON_WS"
 export COLCON_LOG_LEVEL=30
 export RCUTILS_COLORIZED_OUTPUT=1
 export RCUTILS_CONSOLE_OUTPUT_FORMAT="[{severity}] [{name}]: {message} ({function_name}() at {file_name}:{line_number})"
-export PYTHONWARNINGS=ignore:::setuptools.command.install,ignore:::setuptools.command.easy_install,ignore:::pkg_resources
 
-# export ROS_IP="192.168.1.10"
-# export ROS_DOMAIN_ID="66"
+# Ros DDS settings
+# export ROS_DOMAIN_ID="11"
+# export CYCLONEDDS_URI=file:///home/soma/.config/dds/cyclonedds.xml
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+# General python settings
+export PYTHONIOENCODING=utf8
+export PYTHONWARNINGS=ignore:::setuptools.command.install,ignore:::setuptools.command.easy_install,ignore:::pkg_resources
 
 typeset -U path
 path+=(
