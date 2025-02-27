@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -eEuo pipefail
 
 install_antibody() {
   if type yay &> /dev/null; then
@@ -6,7 +7,7 @@ install_antibody() {
   elif type dpkg &> /dev/null; then
     local dpkg_download_url="$(curl -fsSL \
       'https://api.github.com/repos/getantibody/antibody/releases/latest' \
-      | jq '.assets[] | select(.name | contains("amd64.deb")) | .browser_download_url'\
+      | jq -r '.assets[] | select(.name | contains("amd64.deb")) | .browser_download_url' \
     )"
     echo "$dpkg_download_url"
     curl -fsSL -o /tmp/antibody.deb "$dpkg_download_url"
