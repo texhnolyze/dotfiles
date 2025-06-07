@@ -86,19 +86,23 @@ PROMPT='┌─[%{$fg[green]%}$(in_container)%{$fg[red]%}%m%{$fg_bold[white]%}$(i
 # generel aliases
 alias _='sudo'
 alias ...='cd ../../'
+alias ....='cd ../../..'
 alias ls='ls --color=auto'
 alias ll='ls -lha'
-alias mk='mkdir -p'
+alias md='mkdir -p'
 alias grep='grep --color=auto'
-alias pong='ping -c3 www.google.com'
-alias cpv='rsync -aAXbP -hhh --backup-dir=/tmp/rsync -e /dev/null'
+alias dirsizes='du -hd1 | sort -h'
+alias cpv='rsync -aAXbP -hhh -e /dev/null'
 export RSYNC_COMPRESSION_EXCLUDES="3fr/3g2/3gp/3gpp/7z/aac/ace/amr/apk/appx/appxbundle/arc/arj/arw/asf/avi/bz/bz2/cab/cr2/crypt[5678]/dat/dcr/deb/dmg/drc/ear/erf/flac/flv/gif/gpg/gz/iiq/jar/jp2/jpeg/jpg/h26[45]/k25/kdc/kgb/lha/lz/lzma/lzo/lzx/m4[apv]/mef/mkv/mos/mov/mp[34]/mpeg/mp[gv]/msi/nef/oga/ogg/ogv/opus/orf/pak/pef/png/qt/rar/r[0-9][0-9]/rz/rpm/rw2/rzip/sfark/sfx/s7z/sr2/srf/svgz/t[gb]z/tlz/txz/vob/wim/wma/wmv/xz/zip"
 alias rsync='rsync --skip-compress=$RSYNC_COMPRESSION_EXCLUDES'
 alias sshpw='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -CY'
-alias socks='ssh -D 1337 -q -C -N'
 alias cl='curl -fsSL'
+alias pong='ping -c3 www.google.com'
+alias socks='ssh -D 1337 -C -N'
+alias ports='sudo ss -tulwn | grep LISTEN'
 alias nmapssh='sudo nmap -sS -p 22'
-alias tex='mkdir -p output && xelatex -output-directory=output'
+alias nmapfull='nmap -p0- -v -A -T4 -Pn'
+alias clip='xclip -in -selection clipboard'
 
 # coding aliases
 alias rspec='rspec --color --format documentation'
@@ -106,6 +110,8 @@ alias phpunit='phpunit --colors --verbose'
 alias c='cargo'
 alias cr='cargo run'
 alias cb='cargo build'
+alias ct='cargo test'
+alias m='meson'
 
 function venv() {
   venv_dirs="$(find ~/.virtualenvs/* -maxdepth 0 -type d,l -print)"
@@ -123,6 +129,8 @@ alias journ='journalctl -xe -b'
 
 # docker/kubernetes aliases
 alias d='docker'
+alias dstop='docker container list -q | xargs docker stop'
+alias drun='docker run -it --rm'
 alias dc='docker-compose'
 alias mk='minikube'
 alias helm='helm-tls-wrapper'
@@ -138,13 +146,14 @@ alias vn='vagrant destroy && vagrant up'
 
 # utitlity aliases
 alias slideshow='feh -rzZFD 5'
-alias dirsizes='du -hd1 | sort -h'
 alias mpv='mpv --save-position-on-quit'
 alias t='trans'
 alias ted='trans -t de'
 alias tde='trans -l de'
 alias dl='aria2c -c -j 5 -x 10 -s 10 -k 1M'
 alias ytdl='yt-dlp --downloader aria2c --downloader-args aria2c:"-c -j 5 -x 10 -s 10 -k 1M"'
+alias e='evince'
+alias tex='mkdir -p output && xelatex -output-directory=output'
 
 ###---- Extensions ----###
 # fnm nodejs version manager setup
