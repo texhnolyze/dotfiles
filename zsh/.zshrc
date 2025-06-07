@@ -45,13 +45,19 @@ autoload -U colors && colors
 
 
 ###---- Color utils ----###
-export GREP_COLOR="mt=1;31"
+export GREP_COLORS="mt=1;31"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 
 # colors for ls
-if [[ -f ~/.dir_colors ]]; then
-  eval $(dircolors -b ~/.dir_colors)
+if [[ -f /tmp/.dir_colors ]]; then
+  source /tmp/.dir_colors
+elif type vivid &> /dev/null; then
+  VIVID_THEME="solarized-dark"
+  echo -e "LS_COLORS='$(vivid generate "$VIVID_THEME")'\nexport LS_COLORS" > /tmp/.dir_colors
+  source /tmp/.dir_colors
+elif [[ -f ~/.dir_colors ]]; then
+  source ~/.dir_colors
 fi
 
 function in_container() {
