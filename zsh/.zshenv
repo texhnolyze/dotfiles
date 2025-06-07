@@ -20,6 +20,10 @@ export PYTHONWARNINGS=ignore:::setuptools.command.install,ignore:::setuptools.co
 # disable the default virtualenv prompt change
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+# Skip global completion initialization in /etc/zsh/zshrc as
+# we call it ourselves in our .zshrc
+skip_global_compinit=1
+
 typeset -U path
 path+=(
   $HOME/bin

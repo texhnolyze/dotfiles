@@ -146,12 +146,6 @@ alias tde='trans -l de'
 alias dl='aria2c -c -j 5 -x 10 -s 10 -k 1M'
 alias ytdl='yt-dlp --downloader aria2c --downloader-args aria2c:"-c -j 5 -x 10 -s 10 -k 1M"'
 
-# add custom completions folder
-fpath+=~/.zfunc
-# enable completions zsh/bash completions
-autoload -Uz compinit && compinit
-autoload -Uz bashcompinit && bashcompinit
-
 ###---- Extensions ----###
 # fnm nodejs version manager setup
 if type fnm &> /dev/null; then
@@ -191,6 +185,11 @@ else
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+# add custom completions folder
+fpath+=~/.zfunc
+# enable completions zsh/bash completions
+autoload -Uz compinit && compinit
+autoload -Uz bashcompinit && bashcompinit
 
 ###---- Plugins ---###
 source ~/.zsh_plugins/package-manager.plugin.zsh
