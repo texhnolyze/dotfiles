@@ -87,7 +87,12 @@ alias gcob='git checkout $(fzf_git_branches)'
 alias gcot='git checkout $(fzf_git_tags)'
 alias gcoh='git checkout $(fzf_git_hashes)'
 
-# fzf enviroment variables
+# fzf enviroment variables, based on available tools
+if type rg &> /dev/null; then
+  export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
+  export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+fi
+
 if type fd &> /dev/null; then
   export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
 elif type fdfind &> /dev/null; then
@@ -96,5 +101,4 @@ fi
 
 if [[ -n "$FZF_DEFAULT_COMMAND" ]]; then
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 fi
