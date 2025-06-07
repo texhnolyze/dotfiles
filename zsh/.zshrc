@@ -144,6 +144,17 @@ alias vs='vagrant ssh'
 alias vd='vagrant destroy'
 alias vn='vagrant destroy && vagrant up'
 
+# ansible aliases
+alias a='ansible'
+alias am='ansible --become --ask-become-pass -m'
+alias ash='ansible -m shell -a'
+alias ashb='ansible --become --ask-become-pass -m shell -a'
+alias ashps='ansible --become --ask-become-pass -m shell -a "ps aux | sort -nrk 3,3 | head -n 5"'
+alias ap='ansible-playbook --ask-become-pass'
+alias apwol='ansible-playbook ./playbooks/wake_on_lan.yml'
+alias aping='ansible-playbook ./playbooks/ping.yml'
+alias ag='ansible-galaxy'
+
 # utitlity aliases
 alias slideshow='feh -rzZFD 5'
 alias mpv='mpv --save-position-on-quit'
