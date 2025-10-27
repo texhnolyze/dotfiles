@@ -217,11 +217,6 @@ alias e='evince'
 alias tex='mkdir -p output && xelatex -output-directory=output'
 
 ###---- Extensions ----###
-# fnm nodejs version manager setup
-if type fnm &> /dev/null; then
-  eval "$(fnm env --use-on-cd)"
-fi
-
 # search history with fzf if installed, default otherwise
 if [[ -d /usr/share/fzf ]]; then
   source /usr/share/fzf/completion.zsh
@@ -296,6 +291,11 @@ for tool in "${additional_completions[@]}"; do
     source <($tool completion zsh)
   fi
 done
+
+# fnm nodejs version manager setup
+if type fnm &> /dev/null; then
+  eval "$(fnm env --shell zsh --use-on-cd)"
+fi
 
 if type zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
