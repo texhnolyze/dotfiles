@@ -1,33 +1,34 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
 
-# adds history incrementally and share it across sessions
-setopt SHARE_HISTORY
-setopt INC_APPEND_HISTORY
-
 # add timestamps to history
 setopt EXTENDED_HISTORY
+
+# adds history incrementally and share it across sessions
+setopt SHARE_HISTORY
 
 # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
 setopt HIST_VERIFY
 
 setopt AUTO_CD
 setopt BEEP
 setopt EXTENDED_GLOB
-setopt NO_MATCH
+setopt NOMATCH
 setopt NOTIFY
 setopt NO_COMPLETE_ALIASES
 setopt PROMPT_SUBST
 
 # enable correction for mispelling
 setopt CORRECT_ALL
+CORRECT_IGNORE_FILE=".*"
 
 # vim style keybindings
 bindkey -v
@@ -81,10 +82,14 @@ function in_virtualenv() {
 PROMPT='┌─[%{$fg[green]%}$(in_container)%{$fg[red]%}%m%{$fg_bold[white]%}$(in_virtualenv)%}%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}$(git_current_branch_for_prompt)%{$reset_color%}]
 └─── '
 
+if [[ "$IN_THUNAR" ]]; then
+  PROMPT='%{$fg_bold[blue]%} %~ %{$fg[red]%}>%{$reset_color%} '
+fi
 
 ###---- Aliases ---###
 # generel aliases
 alias _='sudo'
+alias sudo='nocorrect sudo'
 alias ...='cd ../../'
 alias ....='cd ../../..'
 alias ls='ls --color=auto'
@@ -198,10 +203,15 @@ if [[ -f ~/.zsh_plugins.sh ]]; then
   bindkey -M vicmd 'j' history-substring-search-down
 
   # zsh-aliases settings
-  export ZSH_PLUGINS_ALIAS_TIPS_FORCE=1
+  export ZSH_PLUGINS_ALIAS_TIPS_FORCE=0
   export ZSH_PLUGINS_ALIAS_TIPS_TEXT="Use alias stupid: "
-else
+fi
+
+if [[ -d /usr/share/zsh/plugins/zsh-autosuggestions ]]; then
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+if [[ -d /usr/share/zsh/plugins/zsh-syntax-highlighting ]]; then
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
