@@ -40,3 +40,7 @@ path+=(
   $HOME/.fnm
   ${KREW_ROOT:-$HOME/.krew}/bin
 )
+
+if [ -e /home/soma/.nix-profile/etc/profile.d/nix.sh ];
+  then . /home/soma/.nix-profile/etc/profile.d/nix.sh;
+fi # added by Nix installer

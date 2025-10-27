@@ -225,7 +225,10 @@ bindkey '^X^E' edit-command-line
 
 function setup_fzf() {
   # search history with fzf if installed, default otherwise
-  if [[ -d /usr/share/fzf ]]; then
+  if [[ -d ~/.nix-profile/share/fzf ]]; then
+    source ~/.nix-profile/share/fzf/completion.zsh
+    source ~/.nix-profile/share/fzf/key-bindings.zsh
+  elif [[ -d /usr/share/fzf ]]; then
     source /usr/share/fzf/completion.zsh
     source /usr/share/fzf/key-bindings.zsh
   elif [[ -d /usr/share/doc/fzf/examples ]]; then
@@ -241,6 +244,14 @@ function bind_keys() {
     bindkey '^P' atuin-search
   fi
 }
+
+if [[ -f ~/.nix-profile/etc/profile.d/nix.sh ]]; then
+  source ~/.nix-profile/etc/profile.d/nix.sh
+
+  if [[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]]; then
+    source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+  fi
+fi
 
 if [[ -f ~/.zsh_plugins.sh ]]; then
   source ~/.zsh_plugins.sh
