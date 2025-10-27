@@ -7,7 +7,7 @@ function gradle_run() {
 		if [[ -f build.gradle ]];
       then gradle $@
 		else
-      read "answer?There is no build.gradle in this dir. Continue? (y/n) "
+      read "answer?No build.gradle available. Continue? (y/n) "
       case "$answer" in
         [Yy] ) gradle $@ ;;
         * ) echo 'Aborting!' ;;
