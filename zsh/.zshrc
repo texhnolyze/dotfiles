@@ -109,6 +109,35 @@ alias nmapssh='sudo nmap -sS -p 22'
 alias nmapfull='nmap -p0- -v -A -T4 -Pn'
 alias clip='xclip -in -selection clipboard'
 
+function n() {
+  if type nvim &> /dev/null; then
+    nvim $@
+  elif type vim &> /dev/null; then
+    vim $@
+  elif type hx &> /dev/null; then
+    hx $@
+  else
+    vi $@
+  fi
+}
+
+function ra() {
+  if type yazi &> /dev/null; then
+    yazi $@
+  elif type ranger &> /dev/null; then
+    ranger $@
+  fi
+}
+
+function mkcd() {
+  mkdir -p $@ && cd "${@: -1}"
+}
+
+function ssh-tmux() {
+  local hostname="$1"
+  ssh -CYX "$hostname" -t "tmux attach || tmux new"
+}
+
 # coding aliases
 alias rspec='rspec --color --format documentation'
 alias phpunit='phpunit --colors --verbose'
@@ -122,6 +151,22 @@ function venv() {
   venv_dirs="$(find ~/.virtualenvs/* -maxdepth 0 -type d,l -print)"
   chosen_venv="$(echo "$venv_dirs" | fzf)"
   source "$chosen_venv/bin/activate"
+}
+
+function mc() {
+  if [[ "$PWD" =~ "builddir$" ]]; then
+    meson compile
+  else
+    (cd builddir && meson compile)
+  fi
+}
+
+function drun() {
+  if [[ -f docker-compose.yml ]] || [[ -f compose.yml ]]; then
+    docker-compose run --rm $@
+  else
+    docker run -it --rm $@
+  fi
 }
 
 # systemd aliases
