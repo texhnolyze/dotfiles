@@ -1,7 +1,12 @@
 export EDITOR="nvim"
 export VAGRANT_DETECTED_OS="$(uname)"
-export SSH_ASKPASS=ssh-askpass
 export GOPATH="$HOME/coding/go"
+
+if [[ "$DESKTOP_SESSION" == "plasma" ]]; then
+  export SSH_ASKPASS="ksshaskpass"
+else
+  export SSH_ASKPASS="seahorse-ssh-askpass"
+fi
 
 export COLCON_WS="$HOME/colcon_ws"
 export ROS_WORKSPACE="$COLCON_WS"
