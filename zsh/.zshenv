@@ -1,6 +1,7 @@
 export EDITOR="nvim"
 export VAGRANT_DETECTED_OS="$(uname)"
 export GOPATH="$HOME/coding/go"
+export ATUIN_NOBIND="true"
 
 if [[ "$DESKTOP_SESSION" == "plasma" ]]; then
   export SSH_ASKPASS="ksshaskpass"

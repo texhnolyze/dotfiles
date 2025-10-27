@@ -236,9 +236,15 @@ function setup_fzf() {
   fi
 }
 
+function bind_keys() {
+  if type atuin &> /dev/null; then
+    bindkey '^P' atuin-search
+  fi
+}
+
 if [[ -f ~/.zsh_plugins.sh ]]; then
   source ~/.zsh_plugins.sh
-  zvm_after_init_commands+=(setup_fzf)
+  zvm_after_init_commands+=(setup_fzf bind_keys)
 
   # zsh-history-substring-search plugin keybindings
   bindkey '^[[A' history-substring-search-up
@@ -303,4 +309,8 @@ fi
 
 if type zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
+fi
+
+if type atuin &> /dev/null; then
+  eval "$(atuin init zsh)"
 fi
