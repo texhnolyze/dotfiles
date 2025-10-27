@@ -217,24 +217,28 @@ alias e='evince'
 alias tex='mkdir -p output && xelatex -output-directory=output'
 
 ###---- Extensions ----###
-# search history with fzf if installed, default otherwise
-if [[ -d /usr/share/fzf ]]; then
-  source /usr/share/fzf/completion.zsh
-  source /usr/share/fzf/key-bindings.zsh
-elif [[ -f ~/.fzf.zsh ]]; then
-  source ~/.fzf.zsh
-else
-  bindkey '^R' history-incremental-search-backward
-fi
-
 # edit current command in EDITOR
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^XE' edit-command-line
 bindkey '^X^E' edit-command-line
 
+function setup_fzf() {
+  # search history with fzf if installed, default otherwise
+  if [[ -d /usr/share/fzf ]]; then
+    source /usr/share/fzf/completion.zsh
+    source /usr/share/fzf/key-bindings.zsh
+  elif [[ -d /usr/share/doc/fzf/examples ]]; then
+    source /usr/share/doc/fzf/examples/completion.zsh
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+  else
+    bindkey '^R' history-incremental-search-backward
+  fi
+}
+
 if [[ -f ~/.zsh_plugins.sh ]]; then
   source ~/.zsh_plugins.sh
+  zvm_after_init_commands+=(setup_fzf)
 
   # zsh-history-substring-search plugin keybindings
   bindkey '^[[A' history-substring-search-up
